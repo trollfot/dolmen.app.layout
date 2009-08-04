@@ -1,0 +1,4 @@
+<div class="dolmen-content-informations discreet">
+  <div tal:content="viewlet/creation" />
+  <div tal:content="viewlet/modification" />
+</div>

@@ -1,0 +1,13 @@
+<form id="dolmen-search"
+      method="post"
+      tal:attributes="action string:${view/application_url}/searchresults">
+  <input type="text"
+	 autocomplete="off"
+	 name="search_term"
+	 id="search-widget" />
+
+  <input type="submit"
+	 name="search_button"
+	 id="search-button"
+	 value="search" />
+</form>

@@ -1,0 +1,13 @@
+<div class="search-header">
+  <h1>Search</h1>
+  <h3>Results for <span class="search-term" tal:content="view/term" /></h3>
+</div>
+<dl class="search-results content-listing" tal:condition="view/results">
+  <dt tal:repeat="result view/results">
+    <a tal:attributes="href result/@@absolute_url;
+		       title result/title"> 
+      <tal:icon  content="structure result/@@contenttype_icon|nothing" />
+      <span tal:content="result/title" />
+    </a>
+  </dt>
+</dl>

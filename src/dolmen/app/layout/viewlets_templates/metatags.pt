@@ -1,0 +1,3 @@
+<title tal:content="structure viewlet/title" />
+<meta tal:attributes="content viewlet/DublinCore/description"
+      name="description" />
