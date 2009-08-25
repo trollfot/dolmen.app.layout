@@ -103,20 +103,17 @@ class Form(z3cform.PageForm, ApplicationAwareView):
     grok.baseclass()
     grok.require("dolmen.content.View")
     ignoreContext = True
-    grok.template("form")
 
 
 class SubForm(composed.SubForm, ApplicationAwareView):
     """A SubForm base class with a nice template.
     """
     grok.baseclass()
-    template = grok.PageTemplateFile("models_templates/form.pt")
 
     
 class Add(crud.Add, ApplicationAwareView):
     """A generic form to add contents.
     """
-    template = grok.PageTemplateFile("models_templates/form.pt")
     grok.implements(IForm)
     
 
@@ -127,7 +124,6 @@ class Edit(crud.Edit, ApplicationAwareView):
     grok.require("dolmen.content.Edit")
     grok.implements(IForm)
     megrok.menu.menuitem(ContentActions, order=20)
-    template = grok.PageTemplateFile("models_templates/form.pt")
 
 
 __all__ = ['Page', 'View', 'Form', 'TabView',
