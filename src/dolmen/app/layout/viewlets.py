@@ -35,7 +35,7 @@ class ContentInformations(grok.Viewlet):
     grok.name('dolmen.byline')
     grok.context(IAttributeAnnotatable)
     grok.viewletmanager(master.DolmenBelowBody)
-    grok.order(20)
+    grok.order(50)
 
     creation = u""
     modification = u""
