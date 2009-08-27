@@ -12,7 +12,8 @@ import dolmen.forms.composed as composed
 from zope.component import getUtility
 from zope.i18nmessageid import MessageFactory
 from dolmen.app.site import IDolmen
-from dolmen.app.layout import ContentActions, IDisplayView, IForm, ISortable
+from dolmen.forms.layout import IForm
+from dolmen.app.layout import ContentActions, IDisplayView, ISortable
 from z3c.flashmessage.interfaces import IMessageSource
 from menhir.library.tablesorter import SimpleTableSorter
 
