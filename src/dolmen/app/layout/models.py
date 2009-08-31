@@ -103,6 +103,7 @@ class Form(z3cform.PageForm, ApplicationAwareView):
     """
     grok.baseclass()
     grok.require("dolmen.content.View")
+    grok.implements(IForm)
     ignoreContext = True
 
 
