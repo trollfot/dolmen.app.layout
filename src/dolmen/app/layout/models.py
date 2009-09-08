@@ -4,18 +4,19 @@ import grok
 import megrok.menu
 import megrok.layout
 import megrok.z3ctable
-import dolmen.forms.crud as crud
 import dolmen.content as content
-import megrok.z3cform as z3cform
-import dolmen.forms.composed as composed
+import dolmen.forms.crud as crud
+import megrok.z3cform.base as z3cform
+import megrok.z3cform.composed as composed
 
 from zope.component import getUtility
 from zope.i18nmessageid import MessageFactory
-from dolmen.app.site import IDolmen
-from dolmen.forms.layout import IForm
-from dolmen.app.layout import ContentActions, IDisplayView, ISortable
 from z3c.flashmessage.interfaces import IMessageSource
+from megrok.z3cform.layout import IForm
 from menhir.library.tablesorter import SimpleTableSorter
+
+from dolmen.app.site import IDolmen
+from dolmen.app.layout import ContentActions, IDisplayView, ISortable
 
 _ = MessageFactory("dolmen")
 

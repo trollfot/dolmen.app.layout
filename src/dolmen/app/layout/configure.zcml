@@ -7,7 +7,7 @@
   <include package="grokcore.view" file="meta.zcml" />
   <include package="megrok.menu" file="meta.zcml" />
   <include package="megrok.layout" file="meta.zcml" />
-  <include package="megrok.z3cform" file="meta.zcml" />
+  <include package="megrok.z3cform.base" file="meta.zcml" />
   <grok:grok package="." />
 
   <i18n:registerTranslations directory="locales" />
