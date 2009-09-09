@@ -5,17 +5,17 @@ import megrok.menu
 import megrok.layout
 import megrok.z3ctable
 import dolmen.content as content
-import dolmen.forms.crud as crud
-import megrok.z3cform.base as z3cform
-import megrok.z3cform.composed as composed
 
 from zope.component import getUtility
 from zope.i18nmessageid import MessageFactory
 from z3c.flashmessage.interfaces import IMessageSource
-from megrok.z3cform.layout import IForm
+
+from megrok.z3cform import composed
 from menhir.library.tablesorter import SimpleTableSorter
 
+from dolmen.forms import crud
 from dolmen.app.site import IDolmen
+from dolmen.forms.base import PageForm, cancellable
 from dolmen.app.layout import ContentActions, IDisplayView, ISortable
 
 _ = MessageFactory("dolmen")
@@ -99,12 +99,12 @@ class DefaultView(crud.Display, ApplicationAwareView):
     megrok.menu.menuitem(ContentActions, order=10)
 
 
-class Form(z3cform.PageForm, ApplicationAwareView):
+class Form(PageForm, ApplicationAwareView):
     """A simple dolmen form.
     """
     grok.baseclass()
+    cancellable(True)
     grok.require("dolmen.content.View")
-    grok.implements(IForm)
     ignoreContext = True
 
 
@@ -117,15 +117,15 @@ class SubForm(composed.SubForm, ApplicationAwareView):
 class Add(crud.Add, ApplicationAwareView):
     """A generic form to add contents.
     """
-    grok.implements(IForm)
+    cancellable(True)
     
 
 class Edit(crud.Edit, ApplicationAwareView):
     """A generic form to edit contents.
     """
+    cancellable(True)
     grok.title(_(u"Edit"))
     grok.require("dolmen.content.Edit")
-    grok.implements(IForm)
     megrok.menu.menuitem(ContentActions, order=20)
 
 
