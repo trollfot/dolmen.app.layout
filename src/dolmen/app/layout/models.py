@@ -57,7 +57,7 @@ class View(Page):
     megrok.menu.menuitem('display')
 
     
-class TabView(Page):
+class TabView(object):
     """A contextual tab.
     """
     grok.baseclass()
