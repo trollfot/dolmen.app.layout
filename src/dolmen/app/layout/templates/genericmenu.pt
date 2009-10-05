@@ -1,0 +1,14 @@
+<div tal:attributes="id viewlet/menu_name"
+     tal:condition="viewlet/actions">
+  <h5 class="menu-title"
+      tal:content="viewlet/title"
+      tal:condition="viewlet/title" />
+  <ul class="menu">
+    <tal:actions repeat="action viewlet/actions">
+    <li tal:attributes="class action/css">
+      <a tal:content="action/title"
+	 tal:attributes="href action/url; title action/title;" />
+    </li>
+    </tal:actions>
+  </ul>
+</div>

@@ -32,11 +32,6 @@ class DolmenFooter(grok.ViewletManager):
     grok.context(Interface)
 
 
-class DolmenBody(grok.ViewletManager):
-    grok.name("dolmen.body")
-    grok.context(Interface)
-
-
 class DolmenAboveBody(grok.ViewletManager):
     grok.name("dolmen.above.body")
     grok.context(Interface)

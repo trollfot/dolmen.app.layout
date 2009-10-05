@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from grokcore.view import skin
-from zope.publisher.interfaces import browser
 from z3c.form.interfaces import IFormLayer
+from zope.publisher.interfaces import browser
 
 
 class IDolmenBaseLayer(IFormLayer, browser.IDefaultBrowserLayer):
@@ -10,7 +10,8 @@ class IDolmenBaseLayer(IFormLayer, browser.IDefaultBrowserLayer):
     """
 
 
-class IBlankDolmenSkin(IDolmenBaseLayer, browser.IBrowserSkinType):
-    """A skin with light-blue tones. Very sober yet effective.
+class IDolmenBaseSkin(IDolmenBaseLayer, browser.IBrowserSkinType):
+    """A very basic skin, implementing the needed layers to have a fully
+    functional display : forms and other components.
     """
-    skin("blank")
+    skin("basic_dolmen_skin")

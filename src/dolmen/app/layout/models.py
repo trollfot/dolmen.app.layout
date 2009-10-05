@@ -1,22 +1,21 @@
 # -*- coding: utf-8 -*-
 
-import grok
 import megrok.menu
 import megrok.layout
 import megrok.z3ctable
+import grokcore.viewlet as grok
 import dolmen.content as content
 
 from zope.component import getUtility
 from zope.i18nmessageid import MessageFactory
-from z3c.flashmessage.interfaces import IMessageSource
 
 from megrok.z3cform import composed
-from menhir.library.tablesorter import SimpleTableSorter
+from z3c.flashmessage.interfaces import IMessageSource
 
 from dolmen.forms import crud
 from dolmen.app.site import IDolmen
+from dolmen.app.layout import IDisplayView
 from dolmen.forms.base import PageForm, cancellable
-from dolmen.app.layout import ContentActions, IDisplayView, ISortable
 
 _ = MessageFactory("dolmen")
 
@@ -61,42 +60,34 @@ class TabView(object):
     """A contextual tab.
     """
     grok.baseclass()
-    megrok.menu.menuitem(ContentActions)
+    megrok.menu.menuitem('contextual')
 
 
 class TablePage(megrok.z3ctable.TablePage, ApplicationAwareView):
-    """A contextual tab.
+    """A table rendered as a page.
     """
     grok.baseclass()
-
-    def update(self):
-        if ISortable.providedBy(self):
-            SimpleTableSorter.need()
-            if "table" in self.cssClasses:
-                if not "sortable" in self.cssClasses['table']:
-                    self.cssClasses['table'] += u" sortable"
-        megrok.z3ctable.TablePage.update(self)
         
 
-class Index(Page):
+class Index(Page, TabView):
     """A simple index for dolmen objects.
     """
+    grok.order(-1)
     grok.baseclass()
     grok.name('index')
     grok.title(_(u"View"))
     grok.require("dolmen.content.View")
     grok.implements(IDisplayView)
-    megrok.menu.menuitem(ContentActions, order=10)
 
 
-class DefaultView(crud.Display, ApplicationAwareView):
-    """The view per default of the non 'dynamic layout' objects.
+class DefaultView(crud.Display, TabView, ApplicationAwareView):
+    """The view per default for dolmen contents.
     """
+    grok.order(-1)
     grok.name('index')
     grok.title(_(u"View"))
-    grok.require("dolmen.content.View")
     grok.implements(IDisplayView)
-    megrok.menu.menuitem(ContentActions, order=10)
+    grok.require("dolmen.content.View")
 
 
 class Form(PageForm, ApplicationAwareView):
@@ -120,15 +111,15 @@ class Add(crud.Add, ApplicationAwareView):
     cancellable(True)
     
 
-class Edit(crud.Edit, ApplicationAwareView):
+class Edit(crud.Edit, TabView, ApplicationAwareView):
     """A generic form to edit contents.
     """
-    cancellable(True)
+    grok.order(20)
     grok.title(_(u"Edit"))
     grok.require("dolmen.content.Edit")
-    megrok.menu.menuitem(ContentActions, order=20)
+    cancellable(True)
 
-
-__all__ = ['Page', 'View', 'Form', 'TabView',
-           'Index', 'Add', 'Edit', 'SubForm',
+    
+__all__ = ['Page', 'View', 'Index', 'Form', 'TabView',
+           'DefaultView', 'Add', 'Edit', 'SubForm',
            'TablePage', 'ApplicationAwareView']
