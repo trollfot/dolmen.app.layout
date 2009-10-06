@@ -24,10 +24,10 @@ class ContextualActions(MenuViewlet):
     grok.viewletmanager(master.DolmenTop)
     grok.order(50)
 
-    menu_name = u'contextual'
+    menu_name = u'contextual-actions'
 
     def get_actions(self, context):
-        actions = MenuViewlet.get_actions(self, context)
+        title, actions = MenuViewlet.get_actions(self, context)
         if len(actions) <= 1:
-            return []
-        return actions
+            return title, []
+        return title, actions

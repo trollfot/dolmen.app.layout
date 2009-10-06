@@ -53,14 +53,14 @@ class View(Page):
     """An alternative view for an object.
     """
     grok.baseclass()
-    megrok.menu.menuitem('display')
+    megrok.menu.menuitem('display-options')
 
     
 class TabView(object):
     """A contextual tab.
     """
     grok.baseclass()
-    megrok.menu.menuitem('contextual')
+    megrok.menu.menuitem('contextual-actions')
 
 
 class TablePage(megrok.z3ctable.TablePage, ApplicationAwareView):

@@ -9,12 +9,12 @@ from zope.app.publisher.interfaces.browser import IBrowserMenu
 
 
 class ContextualMenu(megrok.menu.Menu):
-    megrok.menu.name('contextual')
+    megrok.menu.name('contextual-actions')
     megrok.menu.title('Contextual actions')
 
 
 class DisplayMenu(megrok.menu.Menu):
-    megrok.menu.name('display')
+    megrok.menu.name('display-options')
     megrok.menu.title('Content display')
     
 
@@ -24,7 +24,7 @@ class MenuViewlet(grokcore.viewlet.Viewlet):
 
     template = grokcore.viewlet.PageTemplateFile("templates/genericmenu.pt")
     
-    entry_class = ""
+    entry_class = u"entry"
     actions = []
 
     @property

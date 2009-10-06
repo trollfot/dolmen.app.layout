@@ -31,6 +31,7 @@ setup(name = name,
           'megrok.menu >= 0.3dev',
           'megrok.layout',
           'megrok.z3ctable',
+          'megrok.z3cform.base',
           'megrok.z3cform.composed',
       ],
       classifiers = [
