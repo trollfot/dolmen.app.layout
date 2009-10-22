@@ -13,17 +13,13 @@ class ContextualMenu(megrok.menu.Menu):
     megrok.menu.title('Contextual actions')
 
 
-class DisplayMenu(megrok.menu.Menu):
-    megrok.menu.name('display-options')
-    megrok.menu.title('Content display')
-    
-
 class MenuViewlet(grokcore.viewlet.Viewlet):
     grokcore.viewlet.baseclass()
     grokcore.viewlet.require("dolmen.content.View")
 
     template = grokcore.viewlet.PageTemplateFile("templates/genericmenu.pt")
-    
+
+    menu_class = u"menu"
     entry_class = u"entry"
     actions = []
 
@@ -50,6 +46,7 @@ class MenuViewlet(grokcore.viewlet.Viewlet):
             selected = getattr(self.view, '__name__', None)
             self.actions = [{'url': "%s/%s" % (url, action['action']),
                              'title': action['title'],
+                             'selected': action['action'] == selected,
                              'css': (action['action'] == selected
                                      and self.entry_class + ' selected'
                                      or self.entry_class)}

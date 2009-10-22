@@ -49,13 +49,6 @@ class Page(megrok.layout.Page, ApplicationAwareView):
     grok.implements(IDisplayView)
 
     
-class View(Page):
-    """An alternative view for an object.
-    """
-    grok.baseclass()
-    megrok.menu.menuitem('display-options')
-
-    
 class TabView(object):
     """A contextual tab.
     """
@@ -120,6 +113,6 @@ class Edit(crud.Edit, TabView, ApplicationAwareView):
     cancellable(True)
 
     
-__all__ = ['Page', 'View', 'Index', 'Form', 'TabView',
+__all__ = ['Page', 'Index', 'Form', 'TabView',
            'DefaultView', 'Add', 'Edit', 'SubForm',
            'TablePage', 'ApplicationAwareView']
