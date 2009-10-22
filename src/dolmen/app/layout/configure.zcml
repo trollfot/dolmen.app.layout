@@ -12,6 +12,7 @@
 
   <include package="megrok.z3ctable" />
   <include package="megrok.z3cform.base" />
+  <include package="dolmen.app.security" />
 
   <grok:grok package="." />
 
