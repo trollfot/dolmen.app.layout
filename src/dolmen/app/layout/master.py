@@ -3,8 +3,8 @@
 import os
 import grok
 from megrok.layout import Layout
-from zope.interface import Interface
-from grokcore.view import PageTemplateFile
+from dolmen.app.layout import interfaces as API
+from zope.interface import Interface, moduleProvides
 
 grok.templatedir('templates')
 
@@ -17,26 +17,30 @@ class Master(Layout):
         self.base = str(self.request.URL.get(-1))
 
         
-class DolmenHeader(grok.ViewletManager):
+class Header(grok.ViewletManager):
     grok.name("dolmen.header")
     grok.context(Interface)
     
 
-class DolmenTop(grok.ViewletManager):
+class Top(grok.ViewletManager):
     grok.name("dolmen.top")
     grok.context(Interface)
 
 
-class DolmenFooter(grok.ViewletManager):
+class Footer(grok.ViewletManager):
     grok.name("dolmen.footer")
     grok.context(Interface)
 
 
-class DolmenAboveBody(grok.ViewletManager):
+class AboveBody(grok.ViewletManager):
     grok.name("dolmen.above.body")
     grok.context(Interface)
 
 
-class DolmenBelowBody(grok.ViewletManager):
+class BelowBody(grok.ViewletManager):
     grok.name("dolmen.below.body")
     grok.context(Interface)
+
+
+moduleProvides(API.IGlobalUI)
+__all__ = list(API.IGlobalUI)

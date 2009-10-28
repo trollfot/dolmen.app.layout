@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import grokcore.viewlet as grok
-import dolmen.content
-from dolmen.app.layout import master, MenuViewlet
-from zope.interface import Interface
+import grok
+
+from dolmen.content import IBaseContent
+from dolmen.app.layout import interfaces as API
+from dolmen.app.layout import MenuViewlet, AboveBody, Top
+
 from zope.component import getUtility
+from zope.interface import Interface, moduleProvides
 from z3c.flashmessage.interfaces import IMessageReceiver
 
 
@@ -12,7 +15,7 @@ class FlashMessages(grok.Viewlet):
     grok.order(10)
     grok.context(Interface)
     grok.name('dolmen.messages')
-    grok.viewletmanager(master.DolmenAboveBody)
+    grok.viewletmanager(AboveBody)
     
     def update(self):
         source = getUtility(IMessageReceiver)
@@ -20,8 +23,8 @@ class FlashMessages(grok.Viewlet):
 
 
 class ContextualActions(MenuViewlet):
-    grok.context(dolmen.content.IBaseContent)
-    grok.viewletmanager(master.DolmenTop)
+    grok.context(IBaseContent)
+    grok.viewletmanager(Top)
     grok.order(50)
 
     menu_name = u'contextual-actions'
@@ -31,3 +34,7 @@ class ContextualActions(MenuViewlet):
         if len(actions) <= 1:
             return title, []
         return title, actions
+
+
+moduleProvides(API.IContextualUI)
+__all__ = list(API.IContextualUI)

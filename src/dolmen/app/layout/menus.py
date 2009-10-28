@@ -1,23 +1,33 @@
 # -*- coding: utf-8 -*-
 
+import grok
 import megrok.menu
-import grokcore.viewlet
+
+from dolmen.app.layout import interfaces as API
 
 from zope.component import getUtility
+from zope.interface import moduleProvides
 from zope.traversing.browser.absoluteurl import absoluteURL
 from zope.app.publisher.interfaces.browser import IBrowserMenu
 
 
 class ContextualMenu(megrok.menu.Menu):
-    megrok.menu.name('contextual-actions')
-    megrok.menu.title('Contextual actions')
+    grok.name('contextual-actions')
+    grok.title('Contextual actions')
 
 
-class MenuViewlet(grokcore.viewlet.Viewlet):
-    grokcore.viewlet.baseclass()
-    grokcore.viewlet.require("dolmen.content.View")
+class ContextualMenuEntry(object):
+    """Defines an contextual actions menu entry.
+    """
+    grok.baseclass()
+    megrok.menu.menuitem(ContextualMenu)
 
-    template = grokcore.viewlet.PageTemplateFile("templates/genericmenu.pt")
+
+class MenuViewlet(grok.Viewlet):
+    grok.baseclass()
+    grok.require("dolmen.content.View")
+
+    template = grok.PageTemplateFile("templates/genericmenu.pt")
 
     menu_class = u"menu"
     entry_class = u"entry"
@@ -51,3 +61,7 @@ class MenuViewlet(grokcore.viewlet.Viewlet):
                                      and self.entry_class + ' selected'
                                      or self.entry_class)}
                             for action in actions]
+
+
+moduleProvides(API.IMenus)
+__all__ = list(API.IMenus)

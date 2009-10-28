@@ -1,21 +1,23 @@
 # -*- coding: utf-8 -*-
 
+import grok
 import megrok.menu
 import megrok.layout
 import megrok.z3ctable
-import grokcore.viewlet as grok
-import dolmen.content as content
 
 from zope.component import getUtility
+from zope.interface import moduleProvides
 from zope.i18nmessageid import MessageFactory
 
 from megrok.z3cform import composed
 from z3c.flashmessage.interfaces import IMessageSource
 
 from dolmen.forms import crud
-from dolmen.app.site import IDolmen
-from dolmen.app.layout import IDisplayView
 from dolmen.forms.base import PageForm, cancellable
+
+from dolmen.app.site import IDolmen
+from dolmen.app.layout import interfaces as API
+from dolmen.app.layout import IDisplayView, ContextualMenuEntry
 
 _ = MessageFactory("dolmen")
 
@@ -49,23 +51,15 @@ class Page(megrok.layout.Page, ApplicationAwareView):
     grok.implements(IDisplayView)
 
     
-class TabView(object):
-    """A contextual tab.
-    """
-    grok.baseclass()
-    megrok.menu.menuitem('contextual-actions')
-
-
 class TablePage(megrok.z3ctable.TablePage, ApplicationAwareView):
     """A table rendered as a page.
     """
     grok.baseclass()
         
 
-class Index(Page, TabView):
+class Index(Page, ContextualMenuEntry):
     """A simple index for dolmen objects.
     """
-    grok.order(-1)
     grok.baseclass()
     grok.name('index')
     grok.title(_(u"View"))
@@ -73,10 +67,9 @@ class Index(Page, TabView):
     grok.implements(IDisplayView)
 
 
-class DefaultView(crud.Display, TabView, ApplicationAwareView):
+class DefaultView(crud.Display, ContextualMenuEntry, ApplicationAwareView):
     """The view per default for dolmen contents.
     """
-    grok.order(-1)
     grok.name('index')
     grok.title(_(u"View"))
     grok.implements(IDisplayView)
@@ -104,7 +97,7 @@ class Add(crud.Add, ApplicationAwareView):
     cancellable(True)
     
 
-class Edit(crud.Edit, TabView, ApplicationAwareView):
+class Edit(crud.Edit, ContextualMenuEntry, ApplicationAwareView):
     """A generic form to edit contents.
     """
     grok.order(20)
@@ -112,7 +105,6 @@ class Edit(crud.Edit, TabView, ApplicationAwareView):
     grok.require("dolmen.content.Edit")
     cancellable(True)
 
-    
-__all__ = ['Page', 'Index', 'Form', 'TabView',
-           'DefaultView', 'Add', 'Edit', 'SubForm',
-           'TablePage', 'ApplicationAwareView']
+
+moduleProvides(API.IModels, API.IBaseViews)
+__all__ = list(API.IModels) + list(API.IBaseViews)
