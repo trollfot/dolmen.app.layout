@@ -61,6 +61,7 @@ class IBaseViews(Interface):
     """
     Add = Attribute("Default add form.")
     Edit = Attribute("Default edit form.")
+    Delete = Attribute("Default delete form.")
     DefaultView = Attribute("Display form used as index.")
 
 

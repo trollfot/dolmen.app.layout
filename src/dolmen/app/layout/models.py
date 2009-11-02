@@ -71,7 +71,6 @@ class DefaultView(crud.Display, ContextualMenuEntry, ApplicationAwareView):
     """The view per default for dolmen contents.
     """
     grok.name('index')
-    grok.title(_(u"View"))
     grok.implements(IDisplayView)
     grok.require("dolmen.content.View")
 
@@ -101,9 +100,23 @@ class Edit(crud.Edit, ContextualMenuEntry, ApplicationAwareView):
     """A generic form to edit contents.
     """
     grok.order(20)
-    grok.title(_(u"Edit"))
-    grok.require("dolmen.content.Edit")
     cancellable(True)
+    grok.require("dolmen.content.Edit")
+
+
+class Delete(crud.Delete, ContextualMenuEntry, ApplicationAwareView):
+    """A delete form.
+    """
+    grok.order(30)
+    cancellable(True)
+    grok.require("dolmen.content.Delete")
+    
+    def nextURL(self):
+        if self._deleted == False:
+            self.flash(_("The object could not be deleted."))
+            return self.url(self.context)
+        self.flash(_("The object has been deleted."))
+        self.redirect(self.url(self.context))
 
 
 moduleProvides(API.IModels, API.IBaseViews)

@@ -165,8 +165,9 @@ Description
 
   >>> interfaceDescription(API.IBaseViews)
   Edit: Default edit form.
-  DefaultView: Display form used as index.
   Add: Default add form.
+  DefaultView: Display form used as index.
+  Delete: Default delete form.
 
 Query
 ~~~~~
@@ -253,16 +254,15 @@ Contextual menu
     <dt>Contextual actions</dt>
     <dd>
       <ul class="menu">
-  <BLANKLINE>
         <li class="entry selected">
    	  <a title="View">View</a>
   	</li>
-  <BLANKLINE>
-  <BLANKLINE>
   	<li class="entry">
   	  <a href="http://127.0.0.1/manfred/edit" title="Edit">Edit</a>
    	</li>
-  <BLANKLINE>
+     	<li class="entry">
+     	  <a href="http://127.0.0.1/manfred/delete" title="Delete">Delete</a>
+    	</li>
       </ul>
     </dd>
   </dl>
@@ -286,22 +286,19 @@ Declaring a new entry::
     <dt>Contextual actions</dt>
     <dd>
       <ul class="menu">
-  <BLANKLINE>
   	<li class="entry">
   	  <a href="http://127.0.0.1/manfred/myentry"
         title="A menu entry for tests">A menu entry for tests</a>
   	</li>
-  <BLANKLINE>
-  <BLANKLINE>
   	<li class="entry selected">
   	  <a title="View">View</a>
   	</li>
-  <BLANKLINE>
-  <BLANKLINE>
   	<li class="entry">
   	  <a href="http://127.0.0.1/manfred/edit" title="Edit">Edit</a>
     	</li>
-  <BLANKLINE>
+     	<li class="entry">
+     	  <a href="http://127.0.0.1/manfred/delete" title="Delete">Delete</a>
+    	</li>
       </ul>
     </dd>
   </dl>
