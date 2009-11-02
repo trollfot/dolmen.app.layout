@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.2.1 (2009-11-02)
+------------------
+
+* Corrected flash messages and redirection in the delete form.
+
 0.2 (2009-11-02)
 ----------------
 

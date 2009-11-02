@@ -110,13 +110,18 @@ class Delete(crud.Delete, ContextualMenuEntry, ApplicationAwareView):
     grok.order(30)
     cancellable(True)
     grok.require("dolmen.content.Delete")
-    
-    def nextURL(self):
-        if self._deleted == False:
-            self.flash(_("The object could not be deleted."))
-            return self.url(self.context)
-        self.flash(_("The object has been deleted."))
-        self.redirect(self.url(self.context))
+
+    @property
+    def successMessage(self):
+        message = _("${name} has been deleted",
+                    mapping={'name': self.context.title})
+        self.flash(message)
+        return message
+
+    @property
+    def failureMessage(self):
+        self.flash(crud.Delete.failureMessage)
+        return crud.Delete.failureMessage
 
 
 moduleProvides(API.IModels, API.IBaseViews)

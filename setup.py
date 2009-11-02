@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 from os.path import join
 
 name = 'dolmen.app.layout'
-version = '0.2'
+version = '0.2.1'
 readme = open(join('src', 'dolmen', 'app', 'layout', 'README.txt')).read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
@@ -11,7 +11,7 @@ install_requires = [
     'grok',
     'dolmen.content',
     'dolmen.forms.base',
-    'dolmen.forms.crud >= 0.2',
+    'dolmen.forms.crud >= 0.2.1',
     'dolmen.app.site',
     'dolmen.app.security',
     'megrok.menu',
