@@ -11,10 +11,6 @@ from zope.component import provideAdapter, provideUtility
 from zope.security.testing import Principal, Participation
 from zope.security.management import newInteraction, endInteraction
 
-from z3c.flashmessage.sources import RAMMessageSource
-from z3c.flashmessage.receiver import GlobalMessageReceiver
-import z3c.flashmessage.interfaces as flash
-
 ftesting_zcml = os.path.join(os.path.dirname(__file__), 'ftesting.zcml')
 FunctionalLayer = functional.ZCMLLayer(
     ftesting_zcml, __name__, 'FunctionalLayer', allow_teardown=True
@@ -22,12 +18,9 @@ FunctionalLayer = functional.ZCMLLayer(
 
 def setUp(test):
     module.setUp(test, 'dolmen.app.layout.ftests')
-    
     participation = Participation(Principal('zope.mgr'))
     newInteraction(participation)
-    provideUtility(GlobalMessageReceiver(), flash.IMessageReceiver)
-    provideUtility(RAMMessageSource(), flash.IMessageSource, name="session")
- 
+
 def tearDown(test):
     module.tearDown(test)
     endInteraction()

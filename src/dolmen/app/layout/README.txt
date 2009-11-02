@@ -53,7 +53,8 @@ Global interface
 Content providers
 -----------------
  
-Description::
+Description
+~~~~~~~~~~~
 
   >>> for name, attr in API.IContentProviders.namesAndDescriptions():
   ...   print "%s: %s" % (name, attr.getDoc())
@@ -67,7 +68,8 @@ Description::
 Layout
 ------
 
-Description::
+Description
+~~~~~~~~~~~
 
   >>> interfaceDescription(API.IGlobalUI)
   Master: Base layout using all the `IContentProviders` components to build a coherent yet overridable rendering.
@@ -84,7 +86,8 @@ Contextual UI
   >>> verify.verifyObject(API.IContextualUI, viewlets)
   True
 
-Description::
+Description
+-----------
 
   >>> interfaceDescription(API.IContextualUI)
   ContextualActions: Viewlet rendering contextual actions.
@@ -108,7 +111,8 @@ models::
   >>> verify.verifyObject(API.IModels, models)
   True
 
-Description::
+Description
+~~~~~~~~~~~
 
   >>> interfaceDescription(API.IModels)
   Index: Page showing as default view on an object.
@@ -144,20 +148,38 @@ to interact with your `dolmen.content` objects and your application::
   >>> verify.verifyObject(API.IBaseViews, models)
   True
 
-Description::
+Description
+~~~~~~~~~~~
 
   >>> interfaceDescription(API.IBaseViews)
   Edit: Default edit form.
   DefaultView: Display form used as index.
   Add: Default add form.
 
-We can now test our default view::
+Query
+~~~~~
+
+We can now test to see if our default views are retrieved::
 
   >>> view = getMultiAdapter((manfred, request), name="index")
   >>> view
   <dolmen.app.layout.models.DefaultView object at ...>
 
-  >>> view()
+  >>> edit = getMultiAdapter((manfred, request), name="edit")
+  >>> edit
+  <dolmen.app.layout.models.Edit object at ...>
+
+The add form is a bit different, as it relies on an adding view (see
+`dolmen.forms.crud` and `dolmen.content` for more information):
+
+  >>> from dolmen.forms.crud import Adder
+
+  >>> adding = Adder(root, request)
+  >>> adding
+  <dolmen.forms.crud.addview.Adder object at ...>
+
+  >>> adding.traverse("dolmen.app.layout.ftests.Mammoth", None)
+  <dolmen.app.layout.models.Add object at ...>
 
 
 Skins
@@ -173,13 +195,15 @@ base component for your own skins::
   >>> verify.verifyObject(API.ISkin, skin)
   True
 
-Description::
+Description
+-----------
 
   >>> interfaceDescription(API.ISkin)
   IBaseSkin: Skin providing the IBaseLayer. Can be applied directly or inherited.
   IBaseLayer: Layer used to register all the Dolmen centric view components.
 
-Form compatibility::
+Form compatibility
+------------------
 
   >>> from megrok.z3cform.base import IFormLayer
   >>> skin.IBaseLayer.extends(IFormLayer)
@@ -196,9 +220,76 @@ Menus
   >>> verify.verifyObject(API.IMenus, menus)
   True
 
-Description::
+Description
+-----------
 
   >>> interfaceDescription(API.IMenus)
   MenuViewlet: Generic viewlet rendering a `IBrowserMenu`.
   ContextualMenu: Menu defining contextual actions.
   ContextualMenuEntry: Entry of the contextual actions menu.
+
+Contextual menu
+---------------
+
+  >>> manager = master.Top(manfred, request, view)
+  >>> manager
+  <dolmen.app.layout.master.Top object at ...>
+
+  >>> manager.update()
+  >>> print manager.render()
+  <dl id="contextual-actions" class="menu">
+    <dt>Contextual actions</dt>
+    <dd>
+      <ul class="menu">
+  <BLANKLINE>
+        <li class="entry selected">
+   	  <a title="View">View</a>
+  	</li>
+  <BLANKLINE>
+  <BLANKLINE>
+  	<li class="entry">
+  	  <a href="http://127.0.0.1/manfred/edit" title="Edit">Edit</a>
+   	</li>
+  <BLANKLINE>
+      </ul>
+    </dd>
+  </dl>
+  <BLANKLINE>
+
+
+Declaring a new entry::
+
+  >>> class MyEntry(grok.View, menus.ContextualMenuEntry):
+  ...   grok.context(Mammoth)
+  ...   grok.title("A menu entry for tests")
+  ...   def render(self):
+  ...      return u"nothing to say"
+
+  >>> grok.testing.grok_component('menu_entry', MyEntry)
+  True
+
+  >>> manager.update()
+  >>> print manager.render()
+  <dl id="contextual-actions" class="menu">
+    <dt>Contextual actions</dt>
+    <dd>
+      <ul class="menu">
+  <BLANKLINE>
+  	<li class="entry">
+  	  <a href="http://127.0.0.1/manfred/myentry"
+        title="A menu entry for tests">A menu entry for tests</a>
+  	</li>
+  <BLANKLINE>
+  <BLANKLINE>
+  	<li class="entry selected">
+  	  <a title="View">View</a>
+  	</li>
+  <BLANKLINE>
+  <BLANKLINE>
+  	<li class="entry">
+  	  <a href="http://127.0.0.1/manfred/edit" title="Edit">Edit</a>
+    	</li>
+  <BLANKLINE>
+      </ul>
+    </dd>
+  </dl>

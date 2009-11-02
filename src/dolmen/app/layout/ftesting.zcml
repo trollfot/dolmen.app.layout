@@ -5,24 +5,17 @@
   <!-- meta files -->
   <include package="zope.app.zcmlfiles" file="meta.zcml" />
   <include package="zope.securitypolicy" file="meta.zcml" />
-  <include package="dolmen.content" file="meta.zcml" />
  
   <!-- Packages with needed components -->
   <include package="zope.app.zcmlfiles" />
-  <include package="zope.contentprovider" />
+  <include package="dolmen.forms.crud" />
   <include package="dolmen.app.layout" />
 
   <!-- Layer manipulation -->
   <include package="megrok.z3cform.base" file="default_form_layer.zcml"/>
 
-
   <securityPolicy
       component="zope.securitypolicy.zopepolicy.ZopeSecurityPolicy"
-      />
-
-  <unauthenticatedPrincipal
-      id="zope.anybody"
-      title="Unauthenticated User"
       />
 
   <principal
@@ -32,8 +25,6 @@
       password="mgrpw"
       />
 
-  <role id="zope.Manager" title="Site Manager" />
-  <grantAll role="zope.Manager" />
-  <grant role="zope.Manager" principal="zope.mgr" />
+  <grantAll principal="zope.mgr" />
 
 </configure>
