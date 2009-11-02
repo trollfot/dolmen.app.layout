@@ -3,7 +3,19 @@ dolmen.app.layout
 =================
 
 `dolmen.app.layout` provides ready-to-use components to get a fully
-functional and extensively pluggable User Interface.
+functional and extensively pluggable User Interface for a Dolmen
+application (see `dolmen.app.site`).
+
+
+About Dolmen
+============
+
+Dolmen is an application development framework based on Grok and ZTK
+which also provides a CMS (Content Management System) out of the
+box. Dolmen is being made with four main objectives in mind: easily
+pluggable, rock solid and fast content type development, readability
+and speed.
+
 
 Getting started
 ===============
@@ -293,3 +305,9 @@ Declaring a new entry::
       </ul>
     </dd>
   </dl>
+
+
+Credits
+=======
+
+All Dolmen packages are sponsorised by NPAI (http://www.npai.fr)
