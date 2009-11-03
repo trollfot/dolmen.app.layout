@@ -8,12 +8,9 @@
  
   <!-- Packages with needed components -->
   <include package="zope.app.zcmlfiles" />
-  <include package="dolmen.forms.crud" />
   <include package="dolmen.app.layout" />
 
-  <!-- Layer manipulation -->
-  <include package="megrok.z3cform.base" file="default_form_layer.zcml"/>
-
+  <!-- Security -->
   <securityPolicy
       component="zope.securitypolicy.zopepolicy.ZopeSecurityPolicy"
       />

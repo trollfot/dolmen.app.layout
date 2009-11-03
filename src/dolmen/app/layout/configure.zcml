@@ -8,6 +8,7 @@
 
   <include package="megrok.menu" file="meta.zcml" />
   <include package="megrok.layout" file="meta.zcml" />
+  <include package="megrok.z3ctable" file="meta.zcml" />
   <include package="megrok.z3cform.base" file="meta.zcml" />
 
   <include package="megrok.z3ctable" />

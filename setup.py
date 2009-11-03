@@ -15,18 +15,22 @@ install_requires = [
     'dolmen.app.site',
     'dolmen.app.security',
     'megrok.menu',
-    'megrok.z3ctable',
+    'megrok.z3ctable >= 1.3',
     'megrok.z3cform.base',
     'megrok.z3cform.composed',
     'megrok.layout >= 0.9',
-    'z3c.flashmessage'
+    'z3c.flashmessage',
+    'zope.component',
+    'zope.interface',
+    'zope.traversing',
+    'zope.app.publisher',
+    'zope.i18nmessageid',
     ]
 
 tests_require = install_requires + [
     'zope.testing',
     'zope.app.testing',
     'zope.app.zcmlfiles',
-    'zope.contentprovider'
     ]
 
 setup(name = name,
