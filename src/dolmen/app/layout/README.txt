@@ -183,7 +183,7 @@ We can now test to see if our default views are retrieved::
   <dolmen.app.layout.models.Edit object at ...>
 
 The add form is a bit different, as it relies on an adding view (see
-`dolmen.forms.crud` and `dolmen.content` for more information):
+`dolmen.forms.crud` and `dolmen.content` for more information)::
 
   >>> from dolmen.forms.crud import Adder
 
