@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import re
 import os.path
 import unittest
 
 from zope.testing import doctest, module
 from zope.app.testing import functional
-from zope.interface import implements
-from zope.component import provideAdapter, provideUtility
 from zope.security.testing import Principal, Participation
 from zope.security.management import newInteraction, endInteraction
 
@@ -33,8 +30,7 @@ def test_suite():
     suite = unittest.TestSuite()
     readme = functional.FunctionalDocFileSuite(
         'README.txt', setUp=setUp, tearDown=tearDown,
-        globs={'interfaceDescription': interfaceDescription,
-               '__name__': '__main__'}
+        globs={'interfaceDescription': interfaceDescription}
         )
     readme.layer = FunctionalLayer
     suite.addTest(readme)
