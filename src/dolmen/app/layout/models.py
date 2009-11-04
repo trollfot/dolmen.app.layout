@@ -7,7 +7,6 @@ import megrok.z3ctable
 
 from zope.component import getUtility
 from zope.interface import moduleProvides
-from zope.i18nmessageid import MessageFactory
 
 from megrok.z3cform import composed
 from z3c.flashmessage.interfaces import IMessageSource
@@ -18,8 +17,6 @@ from dolmen.forms.base import PageForm, cancellable
 from dolmen.app.site import IDolmen
 from dolmen.app.layout import interfaces as API
 from dolmen.app.layout import IDisplayView, ContextualMenuEntry
-
-_ = MessageFactory("dolmen")
 
 
 class ApplicationAwareView(object):
@@ -62,7 +59,7 @@ class Index(Page, ContextualMenuEntry):
     """
     grok.baseclass()
     grok.name('index')
-    grok.title(_(u"View"))
+    grok.title(crud.i18n(u"View"))
     grok.require("dolmen.content.View")
     grok.implements(IDisplayView)
 
@@ -113,10 +110,8 @@ class Delete(crud.Delete, ContextualMenuEntry, ApplicationAwareView):
 
     @property
     def successMessage(self):
-        message = _("${name} has been deleted",
-                    mapping={'name': self.context.title})
-        self.flash(message)
-        return message
+        self.flash(crud.Delete.successMessage)
+        return crud.Delete.successMessage
 
     @property
     def failureMessage(self):

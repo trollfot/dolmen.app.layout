@@ -1,5 +1,5 @@
 <dl tal:condition="viewlet/actions"
-tal:attributes="id viewlet/menu_name;
+    tal:attributes="id viewlet/menu_name;
 		class viewlet/menu_class;">
   <dt tal:content="viewlet/title"
       tal:condition="viewlet/title" />
