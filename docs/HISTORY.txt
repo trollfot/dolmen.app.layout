@@ -1,6 +1,17 @@
 Changelog
 =========
 
+0.3 (2009-12-26)
+----------------
+
+* The layout now provides and uses a way to include resources, using
+  megrok.resourceviewlet. Two components have been added for that:
+  `ResourcesManager` and `Resource`, respectively a viewletmanager and
+  a viewlet base class.
+
+* The imports has been modified to avoid using any zope.app package.
+
+
 0.2.2 (2009-11-03)
 ------------------
 
