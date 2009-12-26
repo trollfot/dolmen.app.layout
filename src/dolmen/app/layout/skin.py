@@ -7,6 +7,8 @@ from zope.publisher.interfaces import browser
 
 from dolmen.forms.base import IFormLayer
 from dolmen.app.layout import interfaces as API
+from dolmen.app.layout.master import Resources
+from megrok.resourceviewlet import ResourceViewlet
 
 
 class IBaseLayer(IFormLayer, browser.IDefaultBrowserLayer):
@@ -20,6 +22,11 @@ class IBaseSkin(IBaseLayer, browser.IBrowserSkinType):
     """
     grok.skin("basic_dolmen_skin")
 
+
+class Resource(ResourceViewlet):
+    grok.baseclass()
+    grok.viewletmanager(Resources)
+    
 
 moduleProvides(API.ISkin)
 __all__ = list(API.ISkin)

@@ -8,7 +8,7 @@ from dolmen.app.layout import interfaces as API
 from zope.component import getUtility
 from zope.interface import moduleProvides
 from zope.traversing.browser.absoluteurl import absoluteURL
-from zope.app.publisher.interfaces.browser import IBrowserMenu
+from zope.browsermenu.interfaces import IBrowserMenu
 
 
 class ContextualMenu(megrok.menu.Menu):

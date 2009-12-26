@@ -18,6 +18,8 @@ class ISkin(Interface):
     IBaseSkin = Attribute("Skin providing the IBaseLayer. Can"
                           " be applied directly or inherited.")
 
+    Resource = Attribute("Viewlet component used to include resources")
+
 
 class IContentProviders(Interface):
     """API - Registered content providers.
@@ -27,6 +29,7 @@ class IContentProviders(Interface):
     Footer = Attribute("Viewlet manager for the bottom part of the body.")
     AboveBody = Attribute("Viewlet manager located above the main content.")
     BelowBody = Attribute("Viewlet manager located below the main content.")
+    Resources = Attribute("Viewlet manager including resources.")
  
 
 class IGlobalUI(IContentProviders):

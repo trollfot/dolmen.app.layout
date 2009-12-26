@@ -75,6 +75,7 @@ Description
   BelowBody: Viewlet manager located below the main content.
   Header: Viewlet manager involved in rendering the HTML head.
   Top: Viewlet manager for the top part of the body.
+  Resources: Viewlet manager including resources.
 
 
 Layout
@@ -85,7 +86,6 @@ Description
 
   >>> interfaceDescription(API.IGlobalUI)
   Master: Base layout using all the `IContentProviders` components to build a coherent yet overridable rendering.
-
 
 
 Contextual UI
@@ -214,6 +214,8 @@ Description
   >>> interfaceDescription(API.ISkin)
   IBaseSkin: Skin providing the IBaseLayer. Can be applied directly or inherited.
   IBaseLayer: Layer used to register all the Dolmen centric view components.
+  Resource: Viewlet component used to include resources
+
 
 Form compatibility
 ------------------
