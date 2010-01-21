@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import grok
-import megrok.menu
 import megrok.layout
 import megrok.z3ctable
 

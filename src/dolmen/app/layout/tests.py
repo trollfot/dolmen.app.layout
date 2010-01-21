@@ -3,7 +3,7 @@
 import os.path
 import unittest
 
-from zope.testing import doctest, module
+from zope.testing import module
 from zope.app.testing import functional
 from zope.security.testing import Principal, Participation
 from zope.security.management import newInteraction, endInteraction
