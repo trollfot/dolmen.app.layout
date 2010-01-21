@@ -111,7 +111,7 @@ class Delete(crud.Delete, ContextualMenuEntry, ApplicationAwareView):
     @property
     def successMessage(self):
         self.flash(crud.Delete.successMessage)
-        return crud.Delete.successMessage
+        return crud.Delete.successMessage.fget(self)
 
     @property
     def failureMessage(self):
