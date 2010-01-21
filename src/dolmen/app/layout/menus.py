@@ -8,7 +8,7 @@ from dolmen.app.layout import interfaces as API
 from zope.component import getUtility
 from zope.interface import moduleProvides
 from zope.traversing.browser.absoluteurl import absoluteURL
-from zope.app.publisher.interfaces.browser import IBrowserMenu
+from zope.browsermenu.interfaces import IBrowserMenu
 
 
 class ContextualMenu(megrok.menu.Menu):
@@ -35,7 +35,7 @@ class MenuViewlet(grok.Viewlet):
 
     @property
     def menu_name(self):
-        raise NotImplementError("You need to specify a menu name.")
+        raise NotImplementedError("You need to specify a menu name.")
 
     def get_context(self):
         return self.context

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import os
 import grok
-from megrok.layout import Layout
 from dolmen.app.layout import interfaces as API
+from megrok.layout import Layout
+from megrok.resourceviewlet import ResourcesManager
 from zope.interface import Interface, moduleProvides
 
 grok.templatedir('templates')
@@ -15,6 +15,11 @@ class Master(Layout):
 
     def update(self):
         self.base = str(self.request.URL.get(-1))
+
+
+class Resources(ResourcesManager):
+    grok.name('dolmen.resources')
+    grok.context(Interface)
 
         
 class Header(grok.ViewletManager):

@@ -21,7 +21,7 @@
 *.bak
 build/
 dist/
-*.egg-info
+
 
 # miscellaneous
 *.orig
