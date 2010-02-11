@@ -23,7 +23,7 @@ class FlashMessages(grok.Viewlet):
 
 
 class ContextualActions(MenuViewlet):
-    grok.context(IBaseContent)
+    grok.context(Interface)
     grok.viewletmanager(Top)
     grok.order(50)
 
