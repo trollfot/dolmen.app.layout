@@ -44,5 +44,6 @@ def siteTearDown(test):
     zope.component.hooks.setSite()
     endInteraction()
 
+
 class DolmenAppLayoutLayer(ZCMLFileLayer):
     pass

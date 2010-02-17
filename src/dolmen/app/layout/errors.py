@@ -15,15 +15,16 @@ class NotFound(Page):
 
     @apply
     def context():
-        """This is done to avoid redefining context in the __init__, after
-        calling Page.__init__. This way, the located error is the one and
-        only context.
-        """
+        # This is done to avoid redefining context in the __init__, after
+        # calling Page.__init__. This way, the error is directly located.
+
         def fset(self, error):
             self._context = LocationProxy(error, error.ob, "Not found")
+
         def fget(self):
             return self._context
+
         return property(fget, fset)
-        
+
     def update(self):
         self.request.response.setStatus(404)

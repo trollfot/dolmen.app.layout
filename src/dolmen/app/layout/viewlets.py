@@ -15,7 +15,7 @@ class FlashMessages(grok.Viewlet):
     grok.context(Interface)
     grok.name('dolmen.messages')
     grok.viewletmanager(AboveBody)
-    
+
     def update(self):
         source = getUtility(IMessageReceiver)
         self.messages = list(source.receive())

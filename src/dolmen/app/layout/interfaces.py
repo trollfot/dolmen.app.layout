@@ -14,7 +14,7 @@ class ISkin(Interface):
     """
     IBaseLayer = Attribute("Layer used to register all the "
                            "Dolmen centric view components.")
-    
+
     IBaseSkin = Attribute("Skin providing the IBaseLayer. Can"
                           " be applied directly or inherited.")
 
@@ -30,15 +30,14 @@ class IContentProviders(Interface):
     AboveBody = Attribute("Viewlet manager located above the main content.")
     BelowBody = Attribute("Viewlet manager located below the main content.")
     Resources = Attribute("Viewlet manager including resources.")
- 
+
 
 class IGlobalUI(IContentProviders):
     """API - Global user interface components.
     """
     Master = Attribute(
         "Base layout using all the `IContentProviders` components "
-        "to build a coherent yet overridable rendering."
-        )
+        "to build a coherent yet overridable rendering.")
 
 
 class IContextualUI(Interface):
@@ -54,10 +53,10 @@ class IModels(Interface):
     Page = Attribute("Page embedded in a layout.")
     Index = Attribute("Page showing as default view on an object.")
     TablePage = Attribute("Page displaying a table.")
-    
+
     Form = Attribute("Generic page form.")
     SubForm = Attribute("Generic sub-form, used in composed forms.")
-    
+
 
 class IBaseViews(Interface):
     """API - Registered view components.

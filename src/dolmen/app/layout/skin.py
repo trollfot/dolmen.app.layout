@@ -26,7 +26,7 @@ class IBaseSkin(IBaseLayer, browser.IBrowserSkinType):
 class Resource(ResourceViewlet):
     grok.baseclass()
     grok.viewletmanager(Resources)
-    
+
 
 moduleProvides(API.ISkin)
 __all__ = list(API.ISkin)

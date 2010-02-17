@@ -50,7 +50,7 @@ class MenuViewlet(grok.Viewlet):
         """
         context = self.get_context()
         self.title, actions = self.get_actions(context)
-        
+
         if actions:
             url = absoluteURL(context, self.request)
             selected = getattr(self.view, '__name__', None)

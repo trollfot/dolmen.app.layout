@@ -19,8 +19,9 @@ from dolmen.app.layout import IDisplayView, ContextualMenuEntry
 
 
 class ApplicationAwareView(object):
-    """A mixin allowing to access the application url 
+    """A mixin allowing to access the application url
     """
+
     def application_url(self, name=None):
         """Return the URL of the nearest Dolmen site.
         """
@@ -30,7 +31,6 @@ class ApplicationAwareView(object):
                 return self.url(obj, name)
             obj = obj.__parent__
         raise ValueError("No application found.")
-
 
     def flash(self, message, type='message'):
         """Send a short message to the user.
@@ -46,12 +46,12 @@ class Page(megrok.layout.Page, ApplicationAwareView):
     grok.require("dolmen.content.View")
     grok.implements(IDisplayView)
 
-    
+
 class TablePage(megrok.z3ctable.TablePage, ApplicationAwareView):
     """A table rendered as a page.
     """
     grok.baseclass()
-        
+
 
 class Index(Page, ContextualMenuEntry):
     """A simple index for dolmen objects.
@@ -85,12 +85,12 @@ class SubForm(composed.SubForm, ApplicationAwareView):
     """
     grok.baseclass()
 
-    
+
 class Add(crud.Add, ApplicationAwareView):
     """A generic form to add contents.
     """
     cancellable(True)
-    
+
 
 class Edit(crud.Edit, ContextualMenuEntry, ApplicationAwareView):
     """A generic form to edit contents.
