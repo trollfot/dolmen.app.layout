@@ -1,6 +1,17 @@
 Changelog
 =========
 
+0.4.0 (2010-02-17)
+------------------
+
+* INotFound errors are not located in the `index.html` view. This
+  allows to use a layout transparently. The __parent__ is set to the
+  `ob` attribute of the INotFound object.
+
+* The contextual menu is no longer restricted to `IBaseContent`
+  objects. It is now registered for `Interface`.
+
+
 0.3.1 (2010-01-21)
 ------------------
 

@@ -2,42 +2,45 @@ from setuptools import setup, find_packages
 from os.path import join
 
 name = 'dolmen.app.layout'
-version = '0.3.1'
+version = '0.4.0'
 readme = open(join('src', 'dolmen', 'app', 'layout', 'README.txt')).read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
 install_requires = [
-    'setuptools',
+    'dolmen.app.security',
+    'dolmen.app.site',
+    'dolmen.forms.base',
+    'dolmen.forms.crud >= 0.2.1',
     'grok',
     'grokcore.view',
     'grokcore.viewlet',
-    'dolmen.content',
-    'dolmen.forms.base',
-    'dolmen.forms.crud >= 0.2.1',
-    'dolmen.app.site',
-    'dolmen.app.security',
+    'megrok.layout >= 0.9',
     'megrok.menu',
     'megrok.resource',
     'megrok.resourceviewlet',
-    'megrok.z3ctable >= 1.3',
     'megrok.z3cform.base',
     'megrok.z3cform.composed',
-    'megrok.layout >= 0.9',
+    'megrok.z3ctable >= 1.3',
+    'setuptools',
     'z3c.flashmessage',
+    'zope.browsermenu',
     'zope.component',
     'zope.interface',
-    'zope.traversing',
+    'zope.location',
     'zope.publisher',
-    'zope.browsermenu'
+    'zope.traversing',
     ]
 
 tests_require = [
-    'zope.security',
+    'dolmen.content',
+    'zope.container',
+    'zope.i18n',
+    'zope.principalregistry',
     'zope.publisher',
+    'zope.security',
     'zope.securitypolicy',
+    'zope.site',
     'zope.testing',
-    'zope.app.testing',
-    'zope.app.zcmlfiles',
     ]
 
 setup(name = name,

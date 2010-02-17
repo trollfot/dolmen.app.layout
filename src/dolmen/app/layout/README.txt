@@ -24,6 +24,7 @@ We import all the needed dependencies of the tests::
 
   >>> import grok
   >>> from dolmen.content import Content
+  >>> from zope.site.hooks import getSite
   >>> from zope.component import getMultiAdapter 
   >>> from zope.publisher.browser import TestRequest
    
@@ -41,7 +42,7 @@ to come::
   >>> grok.testing.grok_component('mammoth', Mammoth)
   True
 
-  >>> root = getRootFolder()
+  >>> root = getSite()
   >>> root['manfred'] = Mammoth()
   >>> manfred = root['manfred']
 
@@ -191,7 +192,7 @@ The add form is a bit different, as it relies on an adding view (see
   >>> adding
   <dolmen.forms.crud.addview.Adder object at ...>
 
-  >>> adding.traverse("dolmen.app.layout.ftests.Mammoth", None)
+  >>> adding.traverse("dolmen.app.layout.Mammoth", None)
   <dolmen.app.layout.models.Add object at ...>
 
 

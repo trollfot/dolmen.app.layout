@@ -4,7 +4,6 @@ import grok
 from dolmen.app.layout import Page
 from zope.publisher.interfaces import INotFound
 from zope.location import LocationProxy
-from zope.site.hooks import getSite
 
 grok.templatedir("templates")
 

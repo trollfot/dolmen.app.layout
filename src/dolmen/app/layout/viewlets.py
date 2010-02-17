@@ -2,7 +2,6 @@
 
 import grok
 
-from dolmen.content import IBaseContent
 from dolmen.app.layout import interfaces as API
 from dolmen.app.layout import MenuViewlet, AboveBody, Top
 
