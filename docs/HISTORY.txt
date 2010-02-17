@@ -11,6 +11,9 @@ Changelog
 * The contextual menu is no longer restricted to `IBaseContent`
   objects. It is now registered for `Interface`.
 
+* The dependencies have been greatly reduced by the removal of all the
+  `zope.app` packages.
+
 
 0.3.1 (2010-01-21)
 ------------------
