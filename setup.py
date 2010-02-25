@@ -14,7 +14,7 @@ install_requires = [
     'grok',
     'grokcore.view',
     'grokcore.viewlet',
-    'megrok.layout >= 0.9',
+    'megrok.layout >= 1.0.1',
     'megrok.menu',
     'megrok.resource',
     'megrok.resourceviewlet',

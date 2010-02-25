@@ -8,7 +8,6 @@ from zope.component import getUtility
 from zope.interface import moduleProvides
 
 from megrok.z3cform import composed
-from z3c.flashmessage.interfaces import IMessageSource
 
 from dolmen.forms import crud
 from dolmen.forms.base import PageForm, cancellable
@@ -18,28 +17,7 @@ from dolmen.app.layout import interfaces as API
 from dolmen.app.layout import IDisplayView, ContextualMenuEntry
 
 
-class ApplicationAwareView(object):
-    """A mixin allowing to access the application url
-    """
-
-    def application_url(self, name=None):
-        """Return the URL of the nearest Dolmen site.
-        """
-        obj = self.context
-        while obj is not None:
-            if IDolmen.providedBy(obj):
-                return self.url(obj, name)
-            obj = obj.__parent__
-        raise ValueError("No application found.")
-
-    def flash(self, message, type='message'):
-        """Send a short message to the user.
-        """
-        source = getUtility(IMessageSource, name='session')
-        source.send(message, type)
-
-
-class Page(megrok.layout.Page, ApplicationAwareView):
+class Page(megrok.layout.Page):
     """A dolmen site page.
     """
     grok.baseclass()
@@ -47,7 +25,7 @@ class Page(megrok.layout.Page, ApplicationAwareView):
     grok.implements(IDisplayView)
 
 
-class TablePage(megrok.z3ctable.TablePage, ApplicationAwareView):
+class TablePage(megrok.z3ctable.TablePage):
     """A table rendered as a page.
     """
     grok.baseclass()
@@ -63,7 +41,7 @@ class Index(Page, ContextualMenuEntry):
     grok.implements(IDisplayView)
 
 
-class DefaultView(crud.Display, ContextualMenuEntry, ApplicationAwareView):
+class DefaultView(crud.Display, ContextualMenuEntry):
     """The view per default for dolmen contents.
     """
     grok.name('index')
@@ -71,7 +49,7 @@ class DefaultView(crud.Display, ContextualMenuEntry, ApplicationAwareView):
     grok.require("dolmen.content.View")
 
 
-class Form(PageForm, ApplicationAwareView):
+class Form(PageForm):
     """A simple dolmen form.
     """
     grok.baseclass()
@@ -80,19 +58,19 @@ class Form(PageForm, ApplicationAwareView):
     ignoreContext = True
 
 
-class SubForm(composed.SubForm, ApplicationAwareView):
+class SubForm(composed.SubForm):
     """A SubForm base class with a nice template.
     """
     grok.baseclass()
 
 
-class Add(crud.Add, ApplicationAwareView):
+class Add(crud.Add):
     """A generic form to add contents.
     """
     cancellable(True)
 
 
-class Edit(crud.Edit, ContextualMenuEntry, ApplicationAwareView):
+class Edit(crud.Edit, ContextualMenuEntry):
     """A generic form to edit contents.
     """
     grok.order(20)
@@ -100,7 +78,7 @@ class Edit(crud.Edit, ContextualMenuEntry, ApplicationAwareView):
     grok.require("dolmen.content.Edit")
 
 
-class Delete(crud.Delete, ContextualMenuEntry, ApplicationAwareView):
+class Delete(crud.Delete, ContextualMenuEntry):
     """A delete form.
     """
     grok.order(30)
