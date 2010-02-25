@@ -4,17 +4,12 @@ import grok
 import megrok.layout
 import megrok.z3ctable
 
-from zope.component import getUtility
-from zope.interface import moduleProvides
-
 from megrok.z3cform import composed
-
 from dolmen.forms import crud
 from dolmen.forms.base import PageForm, cancellable
-
-from dolmen.app.site import IDolmen
 from dolmen.app.layout import interfaces as API
 from dolmen.app.layout import IDisplayView, ContextualMenuEntry
+from zope.interface import moduleProvides
 
 
 class Page(megrok.layout.Page):

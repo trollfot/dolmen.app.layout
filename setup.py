@@ -8,7 +8,6 @@ history = open(join('docs', 'HISTORY.txt')).read()
 
 install_requires = [
     'dolmen.app.security',
-    'dolmen.app.site',
     'dolmen.forms.base',
     'dolmen.forms.crud >= 0.2.1',
     'grok',

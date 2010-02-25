@@ -1,10 +1,12 @@
 Changelog
 =========
 
-0.5 (unreleased)
-----------------
+0.5.0 (2010-02-25)
+------------------
 
-* ...
+* Using now the latest ``megrok.layout``. This removes the need for the
+  `ApplicationAwareView` mixin. This version of ``dolmen.app.layout`` will
+  only work with `Grok >= 1.1rc1`.
 
 
 0.4.0 (2010-02-17)
