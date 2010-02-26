@@ -1,6 +1,14 @@
 Changelog
 =========
 
+0.5.1 (2010-02-26)
+------------------
+
+* Corrected the success message getter for the `Delete` form. It used
+  to fetch the property object and try to persist it. Now, it gets its
+  value as it should.
+
+
 0.5.0 (2010-02-25)
 ------------------
 
