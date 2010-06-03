@@ -13,9 +13,9 @@ from zope.browsermenu.interfaces import IBrowserMenu
 
 
 class ContextualMenu(menu.Menu):
-    grok.name('contextual-actions')
     grok.context(Interface)
-    grok.title('Contextual actions')
+    grok.name('contextual-actions')
+    grok.title(u'Contextual actions')
 
 
 class MenuViewlet(grok.Viewlet):
@@ -40,7 +40,7 @@ class MenuViewlet(grok.Viewlet):
 
     def render(self):
         return self.menu.render()
-        
+
 
 moduleProvides(API.IMenus)
 __all__ = list(API.IMenus)

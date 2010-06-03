@@ -53,7 +53,6 @@ class IModels(Interface):
     Page = Attribute("Page embedded in a layout.")
     Index = Attribute("Page showing as default view on an object.")
     TablePage = Attribute("Page displaying a table.")
-
     Form = Attribute("Generic page form.")
     SubForm = Attribute("Generic sub-form, used in composed forms.")
 

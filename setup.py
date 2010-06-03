@@ -9,11 +9,11 @@ history = open(join('docs', 'HISTORY.txt')).read()
 install_requires = [
     'dolmen.app.security',
     'dolmen.menu',
-    'dolmen.forms.crud >= 0.2.1',
+    'dolmen.forms.crud >= 1.0a1',
     'grok',
     'grokcore.view',
     'grokcore.viewlet',
-    'megrok.layout >= 1.0.1',
+    'megrok.layout >= 1.1',
     'megrok.menu',
     'megrok.resource',
     'megrok.resourceviewlet',

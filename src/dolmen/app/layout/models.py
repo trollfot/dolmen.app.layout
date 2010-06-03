@@ -28,7 +28,6 @@ class TablePage(megrok.z3ctable.TablePage):
     grok.baseclass()
 
 
-@menu.menuentry(ContextualMenu)
 class Index(Page):
     """A simple index for dolmen objects.
     """
@@ -39,7 +38,7 @@ class Index(Page):
     grok.implements(IDisplayView)
 
 
-@menu.menuentry(ContextualMenu)
+@menu.menuentry(ContextualMenu, order=10)
 class DefaultView(crud.Display):
     """The view per default for dolmen contents.
     """
@@ -68,14 +67,14 @@ class Add(crud.Add):
     pass
 
 
-@menu.menuentry(ContextualMenu)
+@menu.menuentry(ContextualMenu, order=20)
 class Edit(crud.Edit):
     """A generic form to edit contents.
     """
     grok.require("dolmen.content.Edit")
 
 
-@menu.menuentry(ContextualMenu)
+@menu.menuentry(ContextualMenu, order=30)
 class Delete(crud.Delete):
     """A delete form.
     """

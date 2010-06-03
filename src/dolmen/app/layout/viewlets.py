@@ -30,11 +30,34 @@ class ContextualActions(MenuViewlet):
     grok.order(50)
 
     menu_factory = ContextualMenu
+    menu_template = grok.PageTemplateFile('viewlets_templates/menu.pt')
+
+    def compute_actions(self, viewlets):
+        for action in viewlets:
+            selected = action.__name__ == self.view.__view_name__
+            if not selected:
+                url = "%s/%s" % (self.menu.context_url, action.__name__)
+            else:
+                url = None
+            
+            yield {
+                'id': action.__name__,
+                'url': url,
+                'title': action.title,
+                'selected': selected,
+                'class': (selected and 'selected ' +
+                          self.menu.entry_class or self.menu.entry_class),
+                }
+
+    def update(self):
+        MenuViewlet.update(self)
+        if len(self.menu.viewlets) > 1:
+            self.actions = self.compute_actions(self.menu.viewlets)
+        else:
+            self.actions = None
 
     def render(self):
-        if len(self.menu.viewlets) > 1:
-            return self.menu.render()
-        return u""
+        return self.menu_template.render(self)
 
 
 moduleProvides(API.IContextualUI)
