@@ -2,12 +2,10 @@
 
 import grok
 
-from dolmen.app.layout import interfaces as API
 from dolmen.app.layout import ContextualMenu, MenuViewlet, AboveBody, Top
-
-from zope.component import queryUtility
+from dolmen.app.layout import interfaces as API
+from grokcore.message import receive
 from zope.interface import Interface, moduleProvides
-from z3c.flashmessage.interfaces import IMessageReceiver
 
 
 class FlashMessages(grok.Viewlet):
@@ -17,9 +15,9 @@ class FlashMessages(grok.Viewlet):
     grok.viewletmanager(AboveBody)
 
     def update(self):
-        source = queryUtility(IMessageReceiver)
-        if source is not None:
-            self.messages = list(source.receive())
+        received = receive()
+        if received is not None:
+            self.messages = list(received)
         else:
             self.messages = []
 

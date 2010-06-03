@@ -1,6 +1,21 @@
 Changelog
 =========
 
+1.0a1 (2010-06-03)
+------------------
+
+* The flash messages are now retrieved thanks to `grokcore.message`.
+
+* Tests have been corrected and simplified.
+
+* Using now `zeam.form` instead of `z3c.form`.
+
+* Using now `dolmen.menu` instead of `megrok.menu`.
+
+* `dolmen.app.layout` now required python2.6 to work. This is due to
+  the use of class decorators.
+
+
 0.5.1 (2010-02-26)
 ------------------
 

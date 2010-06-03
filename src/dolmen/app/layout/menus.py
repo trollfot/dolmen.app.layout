@@ -4,12 +4,7 @@ import grok
 
 from dolmen import menu
 from dolmen.app.layout import interfaces as API
-from megrok.pagetemplate import PageTemplate
-
-from zope.component import getUtility
 from zope.interface import moduleProvides, Interface
-from zope.traversing.browser.absoluteurl import absoluteURL
-from zope.browsermenu.interfaces import IBrowserMenu
 
 
 class ContextualMenu(menu.Menu):

@@ -2,36 +2,33 @@ from setuptools import setup, find_packages
 from os.path import join
 
 name = 'dolmen.app.layout'
-version = '0.5.1'
+version = '1.0a1'
 readme = open(join('src', 'dolmen', 'app', 'layout', 'README.txt')).read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
 install_requires = [
     'dolmen.app.security',
-    'dolmen.menu',
     'dolmen.forms.crud >= 1.0a1',
+    'dolmen.menu',
     'grok',
-    'grokcore.view',
+    'grokcore.view >= 1.13.5',
     'grokcore.viewlet',
+    'grokcore.message',
     'megrok.layout >= 1.1',
     'megrok.menu',
     'megrok.resource',
     'megrok.resourceviewlet',
     'megrok.z3ctable >= 1.3',
     'setuptools',
-    'z3c.flashmessage',
-    'zope.browsermenu',
-    'zope.component',
+    'zeam.form.composed',
     'zope.interface',
     'zope.location',
     'zope.publisher',
-    'zope.traversing',
-    'megrok.pagetemplate',
-    'zeam.form.composed',
     ]
 
 tests_require = [
     'dolmen.content',
+    'zope.component',
     'zope.container',
     'zope.i18n',
     'zope.principalregistry',
@@ -40,6 +37,7 @@ tests_require = [
     'zope.securitypolicy',
     'zope.site',
     'zope.testing',
+    'zope.traversing',
     ]
 
 setup(name = name,
