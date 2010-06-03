@@ -4,11 +4,13 @@ import grok
 import megrok.layout
 import megrok.z3ctable
 
-from megrok.z3cform import composed
+from dolmen import menu
 from dolmen.forms import crud
-from dolmen.forms.base import PageForm, cancellable
 from dolmen.app.layout import interfaces as API
-from dolmen.app.layout import IDisplayView, ContextualMenuEntry
+from dolmen.app.layout import IDisplayView
+from dolmen.app.layout import ContextualMenu
+
+from zeam.form import composed
 from zope.interface import moduleProvides
 
 
@@ -26,7 +28,8 @@ class TablePage(megrok.z3ctable.TablePage):
     grok.baseclass()
 
 
-class Index(Page, ContextualMenuEntry):
+@menu.menuentry(ContextualMenu)
+class Index(Page):
     """A simple index for dolmen objects.
     """
     grok.baseclass()
@@ -36,7 +39,8 @@ class Index(Page, ContextualMenuEntry):
     grok.implements(IDisplayView)
 
 
-class DefaultView(crud.Display, ContextualMenuEntry):
+@menu.menuentry(ContextualMenu)
+class DefaultView(crud.Display):
     """The view per default for dolmen contents.
     """
     grok.name('index')
@@ -44,11 +48,10 @@ class DefaultView(crud.Display, ContextualMenuEntry):
     grok.require("dolmen.content.View")
 
 
-class Form(PageForm):
+class Form(crud.ApplicationForm):
     """A simple dolmen form.
     """
     grok.baseclass()
-    cancellable(True)
     grok.require("dolmen.content.View")
     ignoreContext = True
 
@@ -62,22 +65,20 @@ class SubForm(composed.SubForm):
 class Add(crud.Add):
     """A generic form to add contents.
     """
-    cancellable(True)
+    pass
 
 
-class Edit(crud.Edit, ContextualMenuEntry):
+@menu.menuentry(ContextualMenu)
+class Edit(crud.Edit):
     """A generic form to edit contents.
     """
-    grok.order(20)
-    cancellable(True)
     grok.require("dolmen.content.Edit")
 
 
-class Delete(crud.Delete, ContextualMenuEntry):
+@menu.menuentry(ContextualMenu)
+class Delete(crud.Delete):
     """A delete form.
     """
-    grok.order(30)
-    cancellable(True)
     grok.require("dolmen.content.Delete")
 
     @property

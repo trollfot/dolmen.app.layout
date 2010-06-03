@@ -3,7 +3,7 @@
 import grok
 
 from dolmen.app.layout import interfaces as API
-from dolmen.app.layout import MenuViewlet, AboveBody, Top
+from dolmen.app.layout import ContextualMenu, MenuViewlet, AboveBody, Top
 
 from zope.component import queryUtility
 from zope.interface import Interface, moduleProvides
@@ -29,13 +29,12 @@ class ContextualActions(MenuViewlet):
     grok.viewletmanager(Top)
     grok.order(50)
 
-    menu_name = u'contextual-actions'
+    menu_factory = ContextualMenu
 
-    def get_actions(self, context):
-        title, actions = MenuViewlet.get_actions(self, context)
-        if len(actions) <= 1:
-            return title, []
-        return title, actions
+    def render(self):
+        if len(self.menu.viewlets) > 1:
+            return self.menu.render()
+        return u""
 
 
 moduleProvides(API.IContextualUI)

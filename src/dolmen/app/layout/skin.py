@@ -5,13 +5,12 @@ import grok
 from zope.interface import moduleProvides
 from zope.publisher.interfaces import browser
 
-from dolmen.forms.base import IFormLayer
 from dolmen.app.layout import interfaces as API
 from dolmen.app.layout.master import Resources
 from megrok.resourceviewlet import ResourceViewlet
 
 
-class IBaseLayer(IFormLayer, browser.IDefaultBrowserLayer):
+class IBaseLayer(browser.IDefaultBrowserLayer):
     """Base layer for a dolmen application
     """
 

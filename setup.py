@@ -8,7 +8,7 @@ history = open(join('docs', 'HISTORY.txt')).read()
 
 install_requires = [
     'dolmen.app.security',
-    'dolmen.forms.base',
+    'dolmen.menu',
     'dolmen.forms.crud >= 0.2.1',
     'grok',
     'grokcore.view',
@@ -17,8 +17,6 @@ install_requires = [
     'megrok.menu',
     'megrok.resource',
     'megrok.resourceviewlet',
-    'megrok.z3cform.base',
-    'megrok.z3cform.composed',
     'megrok.z3ctable >= 1.3',
     'setuptools',
     'z3c.flashmessage',
@@ -28,6 +26,8 @@ install_requires = [
     'zope.location',
     'zope.publisher',
     'zope.traversing',
+    'megrok.pagetemplate',
+    'zeam.form.composed',
     ]
 
 tests_require = [

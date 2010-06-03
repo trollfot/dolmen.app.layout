@@ -71,7 +71,6 @@ class IMenus(Interface):
     """API - Public menu components.
     """
     ContextualMenu = Attribute("Menu defining contextual actions.")
-    ContextualMenuEntry = Attribute("Entry of the contextual actions menu.")
     MenuViewlet = Attribute("Generic viewlet rendering a `IBrowserMenu`.")
 
 
