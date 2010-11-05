@@ -2,13 +2,10 @@
 
 import grok
 
-from dolmen.content import IBaseContent
+from dolmen.app.layout import ContextualMenu, MenuViewlet, AboveBody, Top
 from dolmen.app.layout import interfaces as API
-from dolmen.app.layout import MenuViewlet, AboveBody, Top
-
-from zope.component import getUtility
+from grokcore.message import receive
 from zope.interface import Interface, moduleProvides
-from z3c.flashmessage.interfaces import IMessageReceiver
 
 
 class FlashMessages(grok.Viewlet):
@@ -16,24 +13,49 @@ class FlashMessages(grok.Viewlet):
     grok.context(Interface)
     grok.name('dolmen.messages')
     grok.viewletmanager(AboveBody)
-    
+
     def update(self):
-        source = getUtility(IMessageReceiver)
-        self.messages = list(source.receive())
+        received = receive()
+        if received is not None:
+            self.messages = list(received)
+        else:
+            self.messages = []
 
 
 class ContextualActions(MenuViewlet):
-    grok.context(IBaseContent)
+    grok.context(Interface)
     grok.viewletmanager(Top)
     grok.order(50)
 
-    menu_name = u'contextual-actions'
+    menu_factory = ContextualMenu
+    menu_template = grok.PageTemplateFile('viewlets_templates/menu.pt')
 
-    def get_actions(self, context):
-        title, actions = MenuViewlet.get_actions(self, context)
-        if len(actions) <= 1:
-            return title, []
-        return title, actions
+    def compute_actions(self, viewlets):
+        for action in viewlets:
+            selected = action.__name__ == self.view.__view_name__
+            if not selected:
+                url = "%s/%s" % (self.menu.context_url, action.__name__)
+            else:
+                url = None
+            
+            yield {
+                'id': action.__name__,
+                'url': url,
+                'title': action.title,
+                'selected': selected,
+                'class': (selected and 'selected ' +
+                          self.menu.entry_class or self.menu.entry_class),
+                }
+
+    def update(self):
+        MenuViewlet.update(self)
+        if len(self.menu.viewlets) > 1:
+            self.actions = self.compute_actions(self.menu.viewlets)
+        else:
+            self.actions = None
+
+    def render(self):
+        return self.menu_template.render(self)
 
 
 moduleProvides(API.IContextualUI)

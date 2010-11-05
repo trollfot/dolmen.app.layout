@@ -24,6 +24,7 @@ We import all the needed dependencies of the tests::
 
   >>> import grok
   >>> from dolmen.content import Content
+  >>> from zope.site.hooks import getSite
   >>> from zope.component import getMultiAdapter 
   >>> from zope.publisher.browser import TestRequest
    
@@ -36,12 +37,12 @@ We define and intanciate a Context object and a request for our tests
 to come::
 
   >>> class Mammoth(Content):
-  ...    grok.name('Furry Mammoth')
+  ...    grok.name(u'Furry Mammoth')
 
   >>> grok.testing.grok_component('mammoth', Mammoth)
   True
 
-  >>> root = getRootFolder()
+  >>> root = getSite()
   >>> root['manfred'] = Mammoth()
   >>> manfred = root['manfred']
 
@@ -133,22 +134,6 @@ Description
   TablePage: Page displaying a table.
   Page: Page embedded in a layout.
 
-
-All the models are `megrok.layout.IPage` components, allowing them to
-render inside a layout::
-
-  >>> from megrok.layout import IPage
-
-  >>> for name in list(API.IModels):
-  ...    model = getattr(models, name)
-  ...    print "%s:\t%s" % (name, IPage.implementedBy(model))
-  Index:        True
-  SubForm:	True
-  TablePage: 	True
-  Page: 	True
-  Form: 	True
-
-
 Default views
 -------------
 
@@ -191,7 +176,7 @@ The add form is a bit different, as it relies on an adding view (see
   >>> adding
   <dolmen.forms.crud.addview.Adder object at ...>
 
-  >>> adding.traverse("dolmen.app.layout.ftests.Mammoth", None)
+  >>> adding.traverse("dolmen.app.layout.Mammoth", None)
   <dolmen.app.layout.models.Add object at ...>
 
 
@@ -217,14 +202,6 @@ Description
   Resource: Viewlet component used to include resources
 
 
-Form compatibility
-------------------
-
-  >>> from megrok.z3cform.base import IFormLayer
-  >>> skin.IBaseLayer.extends(IFormLayer)
-  True
-
-
 Menus
 =====
 
@@ -239,9 +216,8 @@ Description
 -----------
 
   >>> interfaceDescription(API.IMenus)
-  MenuViewlet: Generic viewlet rendering a `IBrowserMenu`.
   ContextualMenu: Menu defining contextual actions.
-  ContextualMenuEntry: Entry of the contextual actions menu.
+  MenuViewlet: Generic viewlet rendering a `IBrowserMenu`.
 
 Contextual menu
 ---------------
@@ -255,52 +231,16 @@ Contextual menu
   <dl id="contextual-actions" class="menu">
     <dt>Contextual actions</dt>
     <dd>
-      <ul class="menu">
-        <li class="entry selected">
-   	  <a title="View">View</a>
-  	</li>
-  	<li class="entry">
-  	  <a href="http://127.0.0.1/manfred/edit" title="Edit">Edit</a>
-   	</li>
-     	<li class="entry">
-     	  <a href="http://127.0.0.1/manfred/delete" title="Delete">Delete</a>
-    	</li>
-      </ul>
-    </dd>
-  </dl>
-  <BLANKLINE>
-
-
-Declaring a new entry::
-
-  >>> class MyEntry(grok.View, menus.ContextualMenuEntry):
-  ...   grok.context(Mammoth)
-  ...   grok.title("A menu entry for tests")
-  ...   def render(self):
-  ...      return u"nothing to say"
-
-  >>> grok.testing.grok_component('menu_entry', MyEntry)
-  True
-
-  >>> manager.update()
-  >>> print manager.render()
-  <dl id="contextual-actions" class="menu">
-    <dt>Contextual actions</dt>
-    <dd>
-      <ul class="menu">
-  	<li class="entry">
-  	  <a href="http://127.0.0.1/manfred/myentry"
-        title="A menu entry for tests">A menu entry for tests</a>
-  	</li>
-  	<li class="entry selected">
+      <ul>
+        <li class="selected entry">
   	  <a title="View">View</a>
-  	</li>
-  	<li class="entry">
-  	  <a href="http://127.0.0.1/manfred/edit" title="Edit">Edit</a>
-    	</li>
-     	<li class="entry">
-     	  <a href="http://127.0.0.1/manfred/delete" title="Delete">Delete</a>
-    	</li>
+        </li>
+        <li class="entry">
+    	  <a href="http://127.0.0.1/manfred/edit" title="Edit">Edit</a>
+        </li>
+        <li class="entry">
+    	  <a href="http://127.0.0.1/manfred/delete" title="Delete">Delete</a>
+        </li>
       </ul>
     </dd>
   </dl>

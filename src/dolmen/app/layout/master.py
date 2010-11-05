@@ -21,11 +21,11 @@ class Resources(ResourcesManager):
     grok.name('dolmen.resources')
     grok.context(Interface)
 
-        
+
 class Header(grok.ViewletManager):
     grok.name("dolmen.header")
     grok.context(Interface)
-    
+
 
 class Top(grok.ViewletManager):
     grok.name("dolmen.top")

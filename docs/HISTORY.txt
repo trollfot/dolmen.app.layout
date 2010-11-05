@@ -1,13 +1,73 @@
 Changelog
 =========
 
+<<<<<<< HEAD:docs/HISTORY.txt
+=======
+1.0a1 (2010-06-03)
+------------------
+
+* The flash messages are now retrieved thanks to `grokcore.message`.
+
+* Tests have been corrected and simplified.
+
+* Using now `zeam.form` instead of `z3c.form`.
+
+* Using now `dolmen.menu` instead of `megrok.menu`.
+
+* `dolmen.app.layout` now required python2.6 to work. This is due to
+  the use of class decorators.
+
+
+0.5.1 (2010-02-26)
+------------------
+
+* Corrected the success message getter for the `Delete` form. It used
+  to fetch the property object and try to persist it. Now, it gets its
+  value as it should.
+
+
+0.5.0 (2010-02-25)
+------------------
+
+* Using now the latest ``megrok.layout``. This removes the need for the
+  `ApplicationAwareView` mixin. This version of ``dolmen.app.layout`` will
+  only work with `Grok >= 1.1rc1`.
+
+
+0.4.0 (2010-02-17)
+------------------
+
+* INotFound errors are not located in the `index.html` view. This
+  allows to use a layout transparently. The __parent__ is set to the
+  `ob` attribute of the INotFound object.
+
+* The contextual menu is no longer restricted to `IBaseContent`
+  objects. It is now registered for `Interface`.
+
+* The dependencies have been greatly reduced by the removal of all the
+  `zope.app` packages.
+
+
+0.3.1 (2010-01-21)
+------------------
+
+* Bug fix: the success message of a Delete form is a property and
+  can't be called directly through the class. We need to use fget.
+
+
+>>>>>>> 682f788130591fe9e7a4d845dbdf53119ee50026:docs/HISTORY.txt
 0.3 (2009-12-26)
 ----------------
 
 * The layout now provides and uses a way to include resources, using
   megrok.resourceviewlet. Two components have been added for that:
+<<<<<<< HEAD:docs/HISTORY.txt
   `ResourcesManager` and `Resource`, respectively a viewletmanager and
   a viewlet base class.
+=======
+  ResourcesManager and Resource, respectively a viewletmanager and a
+  viewlet base class.
+>>>>>>> 682f788130591fe9e7a4d845dbdf53119ee50026:docs/HISTORY.txt
 
 * The imports has been modified to avoid using any zope.app package.
 

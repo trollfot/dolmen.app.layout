@@ -2,42 +2,41 @@ from setuptools import setup, find_packages
 from os.path import join
 
 name = 'dolmen.app.layout'
-version = '0.3'
+version = '1.0a2'
 readme = open(join('src', 'dolmen', 'app', 'layout', 'README.txt')).read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
 install_requires = [
-    'setuptools',
+    'dolmen.app.security',
+    'dolmen.forms.crud >= 1.0a1',
+    'dolmen.menu',
     'grok',
     'grokcore.view',
     'grokcore.viewlet',
-    'dolmen.content',
-    'dolmen.forms.base',
-    'dolmen.forms.crud >= 0.2.1',
-    'dolmen.app.site',
-    'dolmen.app.security',
+    'grokcore.message',
+    'megrok.layout >= 1.1',
     'megrok.menu',
     'megrok.resource',
     'megrok.resourceviewlet',
     'megrok.z3ctable >= 1.3',
-    'megrok.z3cform.base',
-    'megrok.z3cform.composed',
-    'megrok.layout >= 0.9',
-    'z3c.flashmessage',
-    'zope.component',
+    'setuptools',
+    'zeam.form.composed',
     'zope.interface',
-    'zope.traversing',
+    'zope.location',
     'zope.publisher',
-    'zope.browsermenu'
     ]
 
 tests_require = [
-    'zope.security',
+    'dolmen.content',
+    'zope.component',
+    'zope.container',
+    'zope.i18n',
+    'zope.principalregistry',
     'zope.publisher',
+    'zope.security',
     'zope.securitypolicy',
-    'zope.testing',
-    'zope.app.testing',
-    'zope.app.zcmlfiles',
+    'zope.site',
+    'zope.traversing',
     ]
 
 setup(name = name,
@@ -61,12 +60,9 @@ setup(name = name,
       extras_require = {'test': tests_require},
       test_suite="dolmen.app.layout",
       classifiers = [
-        'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Framework :: Zope3',
-        'Intended Audience :: Other Audience',
         'License :: OSI Approved :: GNU General Public License (GPL)',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-      ],
-)
+      ])
