@@ -22,8 +22,8 @@ Getting started
 
 We import all the needed dependencies of the tests::
 
-  >>> import grok
-  >>> from dolmen.content import Content
+  >>> from dolmen import content
+  >>> from grokcore.component import testing
   >>> from zope.site.hooks import getSite
   >>> from zope.component import getMultiAdapter 
   >>> from zope.publisher.browser import TestRequest
@@ -36,10 +36,10 @@ We import everything needed for the API verification::
 We define and intanciate a Context object and a request for our tests
 to come::
 
-  >>> class Mammoth(Content):
-  ...    grok.name(u'Furry Mammoth')
+  >>> class Mammoth(content.Content):
+  ...    content.name(u'Furry Mammoth')
 
-  >>> grok.testing.grok_component('mammoth', Mammoth)
+  >>> testing.grok_component('mammoth', Mammoth)
   True
 
   >>> root = getSite()

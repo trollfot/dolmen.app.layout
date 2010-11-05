@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import grok
+import grokcore.viewlet as grok
 from dolmen.app.layout import interfaces as API
 from megrok.layout import Layout
 from megrok.resourceviewlet import ResourcesManager

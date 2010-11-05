@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import grok
+import grokcore.view as grok
 from dolmen.app.layout import Page
 from zope.publisher.interfaces import INotFound
 from zope.location import LocationProxy

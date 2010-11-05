@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import grok
-
+import grokcore.viewlet as grok
 from dolmen.app.layout import ContextualMenu, MenuViewlet, AboveBody, Top
 from dolmen.app.layout import interfaces as API
 from grokcore.message import receive

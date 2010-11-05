@@ -10,10 +10,10 @@ install_requires = [
     'dolmen.app.security',
     'dolmen.forms.crud >= 1.0a1',
     'dolmen.menu',
-    'grok',
+    'grokcore.message',
+    'grokcore.security',
     'grokcore.view',
     'grokcore.viewlet',
-    'grokcore.message',
     'megrok.layout >= 1.1',
     'megrok.resource',
     'megrok.resourceviewlet',
@@ -25,6 +25,7 @@ install_requires = [
 
 tests_require = [
     'dolmen.content',
+    'grokcore.component',
     'zope.component',
     'zope.container',
     'zope.i18n',

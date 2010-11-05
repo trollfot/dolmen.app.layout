@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import grok
 import megrok.layout
+import grokcore.security as grok
 
 from dolmen import menu
 from dolmen.forms import crud
