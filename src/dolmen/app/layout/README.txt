@@ -130,8 +130,6 @@ Description
   >>> interfaceDescription(API.IModels)
   Index: Page showing as default view on an object.
   Form: Generic page form.
-  SubForm: Generic sub-form, used in composed forms.
-  TablePage: Page displaying a table.
   Page: Page embedded in a layout.
 
 Default views

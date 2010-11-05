@@ -2,15 +2,12 @@
 
 import grok
 import megrok.layout
-import megrok.z3ctable
 
 from dolmen import menu
 from dolmen.forms import crud
 from dolmen.app.layout import interfaces as API
 from dolmen.app.layout import IDisplayView
 from dolmen.app.layout import ContextualMenu
-
-from zeam.form import composed
 from zope.interface import moduleProvides
 
 
@@ -20,12 +17,6 @@ class Page(megrok.layout.Page):
     grok.baseclass()
     grok.require("dolmen.content.View")
     grok.implements(IDisplayView)
-
-
-class TablePage(megrok.z3ctable.TablePage):
-    """A table rendered as a page.
-    """
-    grok.baseclass()
 
 
 class Index(Page):
@@ -55,16 +46,11 @@ class Form(crud.ApplicationForm):
     ignoreContext = True
 
 
-class SubForm(composed.SubForm):
-    """A SubForm base class with a nice template.
-    """
-    grok.baseclass()
-
-
 class Add(crud.Add):
-    """A generic form to add contents.
+    """A generic form to edit contents.
     """
-    pass
+    grok.name('dolmen.add')
+    grok.require("dolmen.content.Edit")
 
 
 @menu.menuentry(ContextualMenu, order=20)
