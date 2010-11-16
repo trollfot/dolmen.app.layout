@@ -32,15 +32,10 @@ class ContextualActions(MenuViewlet):
 
     def compute_actions(self, viewlets):
         for action in viewlets:
-            selected = action.__name__ == self.view.__view_name__
-            if not selected:
-                url = "%s/%s" % (self.menu.context_url, action.__name__)
-            else:
-                url = None
-            
+            selected = action.__name__ == self.view.__view_name__            
             yield {
                 'id': action.__name__,
-                'url': url,
+                'url': selected and action.url or None,
                 'title': action.title,
                 'selected': selected,
                 'class': (selected and 'selected ' +
