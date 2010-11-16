@@ -34,7 +34,7 @@ class ContextualActions(MenuViewlet):
             selected = action.__name__ == self.view.__view_name__            
             yield {
                 'id': action.__name__,
-                'url': selected and action.url or None,
+                'url': not selected and action.url or None,
                 'title': action.title,
                 'selected': selected,
                 'class': (selected and 'selected ' +
