@@ -1,6 +1,17 @@
 Changelog
 =========
 
+1.0a2 (2010-11-05)
+------------------
+
+* Dependencies have been slimmed down : ``dolmen.app.layout`` now longer
+  provides coverage for the ``megrok.z3ctable`` and ``zeam.form.composed``
+  packages. We now rely on the grokcore packages and no longer on the
+  ``grok`` package itself.
+
+* Tests no longer use ``zope.testing``.
+
+
 1.0a1 (2010-06-03)
 ------------------
 
@@ -58,8 +69,8 @@ Changelog
 
 * The layout now provides and uses a way to include resources, using
   megrok.resourceviewlet. Two components have been added for that:
-  ResourcesManager and Resource, respectively a viewletmanager and a
-  viewlet base class.
+  `ResourcesManager` and `Resource`, respectively a viewletmanager and
+  a viewlet base class.
 
 * The imports has been modified to avoid using any zope.app package.
 
@@ -68,6 +79,7 @@ Changelog
 ------------------
 
 * Now the configure.zcml includes the `megrok.z3ctable` meta.zcml.
+
 * Updated dependencies in setup.py
 
 

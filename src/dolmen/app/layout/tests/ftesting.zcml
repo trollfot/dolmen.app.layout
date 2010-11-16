@@ -9,6 +9,7 @@
   <include package="zope.principalregistry" file="meta.zcml" />
   <include package="zope.i18n" file="meta.zcml" />
 
+  <include package="zope.i18n" />
   <include package="zope.security" />
   <include package="zope.principalregistry" />
   <include package="grok" />

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
+import doctest
 import unittest
 from dolmen.app.layout import tests
-from zope.testing import doctest
 
 
 def interfaceDescription(interface):

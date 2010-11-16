@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 from os.path import join
 
 name = 'dolmen.app.layout'
-version = '1.0a1'
+version = '1.0a2'
 readme = open(join('src', 'dolmen', 'app', 'layout', 'README.txt')).read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
@@ -10,17 +10,14 @@ install_requires = [
     'dolmen.app.security',
     'dolmen.forms.crud >= 1.0a1',
     'dolmen.menu',
-    'grok',
-    'grokcore.view >= 1.13.5',
-    'grokcore.viewlet',
     'grokcore.message',
+    'grokcore.security',
+    'grokcore.view',
+    'grokcore.viewlet',
     'megrok.layout >= 1.1',
-    'megrok.menu',
     'megrok.resource',
     'megrok.resourceviewlet',
-    'megrok.z3ctable >= 1.3',
     'setuptools',
-    'zeam.form.composed',
     'zope.interface',
     'zope.location',
     'zope.publisher',
@@ -28,6 +25,7 @@ install_requires = [
 
 tests_require = [
     'dolmen.content',
+    'grokcore.component',
     'zope.component',
     'zope.container',
     'zope.i18n',
@@ -36,7 +34,6 @@ tests_require = [
     'zope.security',
     'zope.securitypolicy',
     'zope.site',
-    'zope.testing',
     'zope.traversing',
     ]
 
@@ -61,12 +58,9 @@ setup(name = name,
       extras_require = {'test': tests_require},
       test_suite="dolmen.app.layout",
       classifiers = [
-        'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Framework :: Zope3',
-        'Intended Audience :: Other Audience',
         'License :: OSI Approved :: GNU General Public License (GPL)',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-      ],
-)
+      ])

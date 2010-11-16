@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import grok
+import grokcore.viewlet as grok
 
 from zope.interface import moduleProvides
 from zope.publisher.interfaces import browser

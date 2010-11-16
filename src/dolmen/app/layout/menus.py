@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import grok
+import grokcore.viewlet as grok
 
 from dolmen import menu
 from dolmen.app.layout import interfaces as API
