@@ -19,7 +19,7 @@ class NotFound(Page):
         # calling Page.__init__. This way, the error is directly located.
 
         def fset(self, error):
-            self._context = LocationProxy(error, error.ob, "Not found")
+            self._context = LocationProxy(error, error.ob, "")
 
         def fget(self):
             return self._context
