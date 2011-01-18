@@ -5,6 +5,8 @@ from dolmen.app.layout import interfaces as API
 from megrok.layout import Layout
 from megrok.resourceviewlet import ResourcesManager
 from zope.interface import Interface, moduleProvides
+from zope.traversing.browser import absoluteURL
+from zope.container import IContainer
 
 grok.templatedir('templates')
 
@@ -14,7 +16,9 @@ class Master(Layout):
     grok.context(Interface)
 
     def update(self):
-        self.base = str(self.request.URL.get(-1))
+        self.base = absoluteURL(self.context, self.request)
+        if IContainer.providedBy(self.context) and self.base[:-1] != '/':
+            self.base = self.base + '/'
 
 
 class Resources(ResourcesManager):
