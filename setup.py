@@ -8,19 +8,20 @@ history = open(join('docs', 'HISTORY.txt')).read()
 
 install_requires = [
     'dolmen.app.security',
-    'dolmen.forms.crud >= 1.0a1',
+    'dolmen.forms.crud >= 1.0b1',
     'dolmen.menu',
     'grokcore.message',
     'grokcore.security',
     'grokcore.view',
     'grokcore.viewlet',
     'megrok.layout >= 1.1',
-    'megrok.resource',
     'megrok.resourceviewlet',
     'setuptools',
+    'zope.container',
     'zope.interface',
     'zope.location',
     'zope.publisher',
+    'zope.traversing',
     ]
 
 tests_require = [
