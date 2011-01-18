@@ -6,7 +6,7 @@ from megrok.layout import Layout
 from megrok.resourceviewlet import ResourcesManager
 from zope.interface import Interface, moduleProvides
 from zope.traversing.browser import absoluteURL
-from zope.container import IContainer
+from zope.container.interfaces import IContainer
 
 grok.templatedir('templates')
 
