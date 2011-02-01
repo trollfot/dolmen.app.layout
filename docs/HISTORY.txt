@@ -1,6 +1,13 @@
 Changelog
 =========
 
+1.0b2 (2011-02-01)
+------------------
+
+* Updated versions dependencies to remove the use of
+  ``megrok.resource`` in favor of ``fanstatic``.
+
+
 1.0b1 (2010-11-16)
 ------------------
 

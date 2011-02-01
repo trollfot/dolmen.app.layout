@@ -15,7 +15,7 @@ install_requires = [
     'grokcore.view',
     'grokcore.viewlet',
     'megrok.layout >= 1.3',
-    'megrok.resourceviewlet',
+    'megrok.resourceviewlet >= 0.2',
     'setuptools',
     'zope.container',
     'zope.interface',
