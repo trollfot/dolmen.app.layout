@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 from os.path import join
 
 name = 'dolmen.app.layout'
-version = '1.0b1'
+version = '1.0b2'
 readme = open(join('src', 'dolmen', 'app', 'layout', 'README.txt')).read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
@@ -14,7 +14,7 @@ install_requires = [
     'grokcore.security',
     'grokcore.view',
     'grokcore.viewlet',
-    'megrok.layout >= 1.1',
+    'megrok.layout >= 1.3',
     'megrok.resourceviewlet',
     'setuptools',
     'zope.container',
