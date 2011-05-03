@@ -88,17 +88,6 @@ class Delete(crud.Delete):
 
     __call__ = utils.layout_form_renderer
 
-    @property
-    def successMessage(self):
-        message = crud.Delete.successMessage.fget(self)
-        dolmen.message.utils.send(message)
-        return message
-
-    @property
-    def failureMessage(self):
-        dolmen.message.utils.send(crud.Delete.failureMessage)
-        return crud.Delete.failureMessage
-
 
 moduleProvides(API.IModels, API.IBaseViews)
 __all__ = list(API.IModels) + list(API.IBaseViews)
