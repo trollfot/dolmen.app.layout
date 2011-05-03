@@ -9,18 +9,6 @@ class IDisplayView(Interface):
     """
 
 
-class ISkin(Interface):
-    """API - Skin components.
-    """
-    IBaseLayer = Attribute("Layer used to register all the "
-                           "Dolmen centric view components.")
-
-    IBaseSkin = Attribute("Skin providing the IBaseLayer. Can"
-                          " be applied directly or inherited.")
-
-    Resource = Attribute("Viewlet component used to include resources")
-
-
 class IContentProviders(Interface):
     """API - Registered content providers.
     """
@@ -43,6 +31,7 @@ class IGlobalUI(IContentProviders):
 class IContextualUI(Interface):
     """API - Pluggable contextual content.
     """
+    Resource = Attribute("Resource viewlet to include resources.")
     FlashMessages = Attribute("Viewlet displaying site-wide messages.")
     ContextualActions = Attribute("Viewlet rendering contextual actions.")
 
@@ -72,6 +61,6 @@ class IMenus(Interface):
 
 
 class IDolmenLayoutAPI(IContentProviders, IGlobalUI, IContextualUI,
-                       ISkin, IModels, IBaseViews, IMenus):
+                       IModels, IBaseViews, IMenus):
     """Dolmen Layout Module API
     """

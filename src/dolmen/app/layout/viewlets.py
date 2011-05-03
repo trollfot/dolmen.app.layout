@@ -1,17 +1,25 @@
 # -*- coding: utf-8 -*-
 
-import grokcore.viewlet as grok
-from dolmen.app.layout import ContextualMenu, MenuViewlet, AboveBody, Top
-from dolmen.app.layout import interfaces as API
-from grokcore.message import receive
+import dolmen.viewlet
+from grokcore.component import baseclass
 from zope.interface import Interface, moduleProvides
+from dolmen.template import TALTemplate
+from dolmen.resources import ResourceViewlet
+from dolmen.app.layout import Resources
+from dolmen.app.layout import utils, interfaces as API
+from dolmen.app.layout import ContextualMenu, MenuViewlet, AboveBody, Top
 
 
-class FlashMessages(grok.Viewlet):
-    grok.order(10)
-    grok.context(Interface)
-    grok.name('dolmen.messages')
-    grok.viewletmanager(AboveBody)
+class Resource(ResourceViewlet):
+    baseclass()
+    dolmen.viewlet.slot(Resources)
+
+
+class FlashMessages(dolmen.viewlet.Viewlet):
+    dolmen.viewlet.order(10)
+    dolmen.viewlet.context(Interface)
+    dolmen.viewlet.name('dolmen.messages')
+    dolmen.viewlet.slot(AboveBody)
 
     def update(self):
         received = receive()
@@ -22,12 +30,12 @@ class FlashMessages(grok.Viewlet):
 
 
 class ContextualActions(MenuViewlet):
-    grok.context(Interface)
-    grok.viewletmanager(Top)
-    grok.order(50)
+    dolmen.viewlet.context(Interface)
+    dolmen.viewlet.slot(Top)
+    dolmen.viewlet.order(50)
 
     menu_factory = ContextualMenu
-    menu_template = grok.PageTemplateFile('viewlets_templates/menu.pt')
+    template = TALTemplate(utils.template_path('menu.pt'))
 
     def compute_actions(self, viewlets):
         for action in viewlets:
@@ -49,7 +57,7 @@ class ContextualActions(MenuViewlet):
             self.actions = None
 
     def render(self):
-        return self.menu_template.render(self)
+        return self.template.render(self)
 
 
 moduleProvides(API.IContextualUI)

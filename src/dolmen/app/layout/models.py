@@ -1,80 +1,98 @@
 # -*- coding: utf-8 -*-
 
-import megrok.layout
+import dolmen.view
+import dolmen.layout
+import dolmen.menu
 import grokcore.security as grok
 
-from dolmen import menu
+from cromlech.io import IRequest
+from dolmen.app.layout import interfaces as API, IDisplayView, ContextualMenu
+from dolmen.app.security import content as permissions
 from dolmen.forms import crud
-from dolmen.app.layout import interfaces as API
-from dolmen.app.layout import IDisplayView
-from dolmen.app.layout import ContextualMenu
-from zope.interface import moduleProvides
+from dolmen.message import utils
+
+from zope.interface import implements, moduleProvides
 
 
-class Page(megrok.layout.Page):
+class Page(dolmen.view.View):
     """A dolmen site page.
-    """
+    """    
     grok.baseclass()
-    grok.require("dolmen.content.View")
-    grok.implements(IDisplayView)
+    grok.require(permissions.CanViewContent)
+
+    dolmen.view.request(IRequest)
+    implements(IDisplayView)
+
+    layout_name = u""
+
+    def __call__(self, *args, **kwargs):
+        self.update(*args, **kwargs)
+        if not self.response.status_int in [301, 302]:
+            layout = dolmen.layout.query_layout(
+                self.request, self.context,
+                dolmen.layout.ILayout, name=self.layout_name)
+            return layout(self.render(*args, **kwargs), view=self)
+        return self.response
 
 
 class Index(Page):
     """A simple index for dolmen objects.
     """
     grok.baseclass()
-    grok.name('index')
-    grok.title(crud.i18n(u"View"))
-    grok.require("dolmen.content.View")
-    grok.implements(IDisplayView)
+    grok.require(permissions.CanViewContent)
+    
+    dolmen.view.name('index')
+    dolmen.view.title(crud.i18n(u"View"))
+    implements(IDisplayView)
 
 
-@menu.menuentry(ContextualMenu, order=10)
+@dolmen.menu.menuentry(ContextualMenu, order=10)
 class DefaultView(crud.Display):
     """The view per default for dolmen contents.
     """
-    grok.name('index')
-    grok.implements(IDisplayView)
-    grok.require("dolmen.content.View")
+    dolmen.view.name('index')
+    implements(IDisplayView)
+    grok.require(permissions.CanViewContent)
 
 
 class Form(crud.ApplicationForm):
     """A simple dolmen form.
     """
     grok.baseclass()
-    grok.require("dolmen.content.View")
+    grok.require(permissions.CanViewContent)
+
     ignoreContext = True
 
 
 class Add(crud.Add):
     """A generic form to edit contents.
     """
-    grok.name('dolmen.add')
-    grok.require("dolmen.content.Edit")
+    dolmen.view.name('dolmen.add')
+    grok.require(permissions.CanAddContent)
 
 
-@menu.menuentry(ContextualMenu, order=20)
+@dolmen.menu.menuentry(ContextualMenu, order=20)
 class Edit(crud.Edit):
     """A generic form to edit contents.
     """
-    grok.require("dolmen.content.Edit")
+    grok.require(permissions.CanEditContent)
+ 
 
-
-@menu.menuentry(ContextualMenu, order=30)
+@dolmen.menu.menuentry(ContextualMenu, order=30)
 class Delete(crud.Delete):
     """A delete form.
     """
-    grok.require("dolmen.content.Delete")
+    grok.require(permissions.CanDeleteContent)
 
     @property
     def successMessage(self):
         message = crud.Delete.successMessage.fget(self)
-        self.flash(message)
+        utils.send(message)
         return message
 
     @property
     def failureMessage(self):
-        self.flash(crud.Delete.failureMessage)
+        utils.send(crud.Delete.failureMessage)
         return crud.Delete.failureMessage
 
 

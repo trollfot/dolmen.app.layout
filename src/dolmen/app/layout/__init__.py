@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from dolmen.app.layout.interfaces import IDisplayView
-from dolmen.app.layout.skin import *
 from dolmen.app.layout.menus import *
 from dolmen.app.layout.master import *
 from dolmen.app.layout.models import *

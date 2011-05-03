@@ -1,21 +1,23 @@
 # -*- coding: utf-8 -*-
 
-import grokcore.viewlet as grok
-
-from dolmen import menu
+import dolmen.menu as menu
 from dolmen.app.layout import interfaces as API
+from dolmen.app.security import CanViewContent
+from dolmen.viewlet import Viewlet
+from grokcore.component import baseclass
+from grokcore.security import require
 from zope.interface import moduleProvides, Interface
 
 
 class ContextualMenu(menu.Menu):
-    grok.context(Interface)
-    grok.name('contextual-actions')
-    grok.title(u'Contextual actions')
+    menu.context(Interface)
+    menu.name('contextual-actions')
+    menu.title(u'Contextual actions')
 
 
-class MenuViewlet(grok.Viewlet):
-    grok.baseclass()
-    grok.require("dolmen.content.View")
+class MenuViewlet(Viewlet):
+    baseclass()
+    require(CanViewContent)
 
     menu_class = u"menu"
     entry_class = u"entry"

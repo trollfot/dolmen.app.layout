@@ -24,9 +24,8 @@ We import all the needed dependencies of the tests::
 
   >>> from dolmen import content
   >>> from grokcore.component import testing
-  >>> from zope.site.hooks import getSite
   >>> from zope.component import getMultiAdapter 
-  >>> from zope.publisher.browser import TestRequest
+  >>> from cromlect.io.testing import TestRequest
    
 We import everything needed for the API verification::
 
@@ -49,18 +48,6 @@ to come::
   >>> request = TestRequest()
 
 
-Global interface
-================
-  
-  >>> from dolmen.app.layout import master
-
-  >>> API.IGlobalUI.extends(API.IContentProviders)
-  True
-
-  >>> API.IGlobalUI.providedBy(master)
-  True
-  >>> verify.verifyObject(API.IGlobalUI, master)
-  True
 
 
 Content providers
@@ -89,15 +76,6 @@ Description
   Master: Base layout using all the `IContentProviders` components to build a coherent yet overridable rendering.
 
 
-Contextual UI
-=============
-
-  >>> from dolmen.app.layout import viewlets
-
-  >>> API.IContextualUI.providedBy(viewlets)
-  True
-  >>> verify.verifyObject(API.IContextualUI, viewlets)
-  True
 
 Description
 -----------
@@ -178,37 +156,11 @@ The add form is a bit different, as it relies on an adding view (see
   <dolmen.app.layout.models.Add object at ...>
 
 
-Skins
-=====
-
-`dolmen.app.layout` provides a browser layer and a skin, to serve as a
-base component for your own skins::
-
-  >>> from dolmen.app.layout import skin
-
-  >>> API.ISkin.providedBy(skin)
-  True
-  >>> verify.verifyObject(API.ISkin, skin)
-  True
-
-Description
------------
-
-  >>> interfaceDescription(API.ISkin)
-  IBaseSkin: Skin providing the IBaseLayer. Can be applied directly or inherited.
-  IBaseLayer: Layer used to register all the Dolmen centric view components.
-  Resource: Viewlet component used to include resources
 
 
 Menus
 =====
 
-  >>> from dolmen.app.layout import menus
-
-  >>> API.IMenus.providedBy(menus)
-  True
-  >>> verify.verifyObject(API.IMenus, menus)
-  True
 
 Description
 -----------
