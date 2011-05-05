@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import os.path
-
 from dolmen.layout import Layout
 from dolmen.viewlet import ViewletManager
 from dolmen.template import TALTemplate

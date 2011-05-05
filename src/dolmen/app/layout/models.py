@@ -8,7 +8,7 @@ import grokcore.security as grok
 
 from cromlech.io import IRequest
 from dolmen.app.layout import interfaces as API, IDisplayView, ContextualMenu
-from dolmen.app.security import content as permissions
+from dolmen.app.security import permissions
 from dolmen.forms import crud, base
 from dolmen.app.layout import utils
 
@@ -17,7 +17,7 @@ from zope.interface import implements, moduleProvides
 
 class Page(dolmen.view.View):
     """A dolmen site page.
-    """    
+    """
     grok.baseclass()
     grok.require(permissions.CanViewContent)
 
@@ -33,7 +33,7 @@ class Index(Page):
     """
     grok.baseclass()
     grok.require(permissions.CanViewContent)
-    
+
     dolmen.view.name('index')
     dolmen.view.title(crud.i18n(u"View"))
     implements(IDisplayView)

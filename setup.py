@@ -5,33 +5,39 @@ from os.path import join
 
 name = 'dolmen.app.layout'
 version = '2.0a1-dev'
-readme = open(join('src', 'dolmen', 'app', 'layout', 'README.txt')).read()
+readme = open('README.txt').read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
 install_requires = [
+    'cromlech.browser',
+    'cromlech.io',
     'dolmen.app.security',
     'dolmen.container',
-    'dolmen.forms.crud >= 1.0b1',
+    'dolmen.forms.base',
+    'dolmen.forms.crud >= 2.0a1-dev',
     'dolmen.layout',
+    'dolmen.location',
     'dolmen.menu',
     'dolmen.message',
+    'dolmen.resources',
+    'dolmen.template',
     'dolmen.view',
     'dolmen.viewlet',
-    'dolmen.resources',
+    'grokcore.component',
     'grokcore.security',
     'setuptools',
+    'zope.component',
     'zope.interface',
-    'zope.location',
     ]
 
 tests_require = [
+    'cromlech.io',
+    'cromlech.browser [test]',
     'dolmen.content',
+    'dolmen.forms.base [test]',
     'grokcore.component',
-    'zope.component',
-    'zope.i18n',
-    'zope.principalregistry',
-    'zope.security',
-    'zope.securitypolicy',
+    'zope.location',
+    'zope.testing',
     ]
 
 setup(name = name,

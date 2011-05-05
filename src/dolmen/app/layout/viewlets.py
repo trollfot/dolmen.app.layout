@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 
 import dolmen.viewlet
-from grokcore.component import baseclass
-from zope.interface import Interface, moduleProvides
-from dolmen.template import TALTemplate
+
+from dolmen.message import receive
 from dolmen.resources import ResourceViewlet
+from dolmen.template import TALTemplate
 from dolmen.app.layout import Resources
 from dolmen.app.layout import utils, interfaces as API
 from dolmen.app.layout import ContextualMenu, MenuViewlet, AboveBody, Top
+
+from grokcore.component import baseclass
+from zope.interface import Interface, moduleProvides
 
 
 class Resource(ResourceViewlet):
@@ -39,7 +42,7 @@ class ContextualActions(MenuViewlet):
 
     def compute_actions(self, viewlets):
         for action in viewlets:
-            selected = action.__name__ == self.view.__view_name__            
+            selected = action.__name__ == self.view.__view_name__
             yield {
                 'id': action.__name__,
                 'url': not selected and action.url or None,
