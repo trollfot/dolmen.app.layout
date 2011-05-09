@@ -28,15 +28,18 @@ install_requires = [
     'setuptools',
     'zope.component',
     'zope.interface',
+    'dolmen.tales',  # tales
     ]
 
 tests_require = [
-    'cromlech.io',
     'cromlech.browser [test]',
+    'dolmen.viewlet [test]',
+    'cromlech.io',
     'dolmen.content',
     'dolmen.forms.base [test]',
     'grokcore.component',
     'zope.location',
+    'zope.security',
     'zope.testing',
     ]
 

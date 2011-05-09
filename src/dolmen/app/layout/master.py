@@ -10,6 +10,7 @@ from dolmen.resources import ResourcesManager
 from dolmen.app.layout import interfaces as API
 from dolmen.app.layout import utils
 
+from cromlech.webob.response import Response
 from grokcore.component import context, name
 from zope.interface import Interface, moduleProvides
 
@@ -45,18 +46,13 @@ class BelowBody(ViewletManager):
 
 
 class Master(Layout):
-    name('master')
     context(Interface)
 
     template = TALTemplate(utils.template_path('master.pt'))
+    responseFactory = Response
 
     def update(self, *args, **extra):
         Layout.update(self, *args, **extra)
-
-        self.base = get_absolute_url(self.context, self.request)
-        if IContainer.providedBy(self.context) and self.base[:-1] != '/':
-            self.base = self.base + '/'
-
         if 'view' in self.push_in:
             resources = Resources(
                 self.context, self.request, self.push_in['view'])
