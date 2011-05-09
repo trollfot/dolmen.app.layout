@@ -8,6 +8,7 @@ import grokcore.security as grok
 
 from cromlech.io import IRequest
 from cromlech.webob.response import Response
+from dolmen.template import TALTemplate
 from dolmen.app.layout import interfaces as API, IDisplayView, ContextualMenu
 from dolmen.app.security import permissions
 from dolmen.forms import crud, base
@@ -50,6 +51,7 @@ class DefaultView(crud.Display):
     grok.require(permissions.CanViewContent)
 
     responseFactory = Response
+    template = TALTemplate(utils.template_path('display.pt'))
     __call__ = utils.layout_form_renderer
 
 
@@ -61,6 +63,7 @@ class Form(base.Form):
 
     ignoreContext = True
     responseFactory = Response
+    template = TALTemplate(utils.template_path('form.pt'))
     __call__ = utils.layout_form_renderer
 
 
@@ -71,6 +74,7 @@ class Add(crud.Add):
     grok.require(permissions.CanAddContent)
 
     responseFactory = Response
+    template = TALTemplate(utils.template_path('form.pt'))
     __call__ = utils.layout_form_renderer
 
 
@@ -82,6 +86,7 @@ class Edit(crud.Edit):
     grok.require(permissions.CanEditContent)
 
     responseFactory = Response
+    template = TALTemplate(utils.template_path('form.pt'))
     __call__ = utils.layout_form_renderer
 
 
@@ -93,6 +98,7 @@ class Delete(crud.Delete):
     grok.require(permissions.CanDeleteContent)
 
     responseFactory = Response
+    template = TALTemplate(utils.template_path('form.pt'))
     __call__ = utils.layout_form_renderer
 
 
