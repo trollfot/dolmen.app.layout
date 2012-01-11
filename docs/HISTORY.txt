@@ -1,6 +1,15 @@
 Changelog
 =========
 
+2.0a2 (2012-01-11)
+------------------
+
+* Splitted the default components grokking and the common ZCML inclusion.
+  We no longer need to grok the package's components by default.
+
+* Cleaned up the imports and dependencies
+
+
 2.0a1 (2012-01-11)
 ------------------
 
