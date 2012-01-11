@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import dolmen.view
-import dolmen.layout
 import dolmen.menu
-import dolmen.message
 import grokcore.security as grok
 
 from cromlech.browser import IHTTPRequest

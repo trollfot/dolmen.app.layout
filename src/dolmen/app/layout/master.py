@@ -2,9 +2,6 @@
 
 from dolmen.layout import Layout
 from dolmen.viewlet import ViewletManager
-from dolmen.template import TALTemplate
-from dolmen.container.interfaces import IContainer
-from dolmen.location import get_absolute_url
 from dolmen.resources import ResourcesManager
 from dolmen.app.layout import interfaces as API, get_template
 

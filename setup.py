@@ -11,11 +11,11 @@ history = open(join('docs', 'HISTORY.txt')).read()
 install_requires = [
     'cromlech.browser >= 0.3a2',
     'cromlech.io >= 0.2a1',
-    'dolmen.container',
+    'cromlech.webob',
+    'dolmen.app.security >= 2.0a1',
     'dolmen.forms.base >= 2.0b2',
     'dolmen.forms.crud >= 2.0b2',
     'dolmen.layout >= 0.2a2',
-    'dolmen.location',
     'dolmen.menu',
     'dolmen.message',
     'dolmen.resources',
@@ -23,23 +23,21 @@ install_requires = [
     'dolmen.template',
     'dolmen.view >= 0.3a3',
     'dolmen.viewlet',
-    'dolmen.app.security >= 2.0a1',
     'grokcore.component',
     'grokcore.security',
     'setuptools',
-    'zope.component',
     'zope.interface',
     ]
 
 tests_require = [
     'cromlech.browser [test] >= 0.3a2',
     'cromlech.io [test]',
-    'dolmen.content',
     'dolmen.forms.base [test] >= 2.0b2',
     'dolmen.viewlet [test]',
     'grokcore.component',
+    'zope.component',
     'zope.location',
-    'zope.security',
+    'zope.schema',
     'zope.testing',
     ]
 

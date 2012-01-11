@@ -2,14 +2,11 @@
 
 # tests imports
 from grokcore.component import testing
-from cromlech.browser.testing import TestView, TestHTTPRequest, XMLDiff
+from cromlech.browser.testing import TestHTTPRequest, XMLDiff
 from zope.testing.cleanup import cleanUp
 
 # Components and utilities
-from cromlech.browser import IViewSlot
-from dolmen.app.layout import models, master
-from zope.component import getAdapters
-from zope.interface import implements
+from dolmen.app.layout import models
 from zope.location import Location
 
 

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import pytest
 from cromlech.browser.testing import XMLDiff
 from cromlech.io import IPublicationRoot
 from cromlech.browser.testing import TestHTTPRequest
