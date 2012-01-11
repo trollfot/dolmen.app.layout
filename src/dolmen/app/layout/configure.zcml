@@ -1,5 +1,11 @@
 <configure xmlns="http://namespaces.zope.org/zope">
+
+  <include package="dolmen.view" file="meta.zcml" />
+  <include package="dolmen.viewlet" file="meta.zcml" />
+  <include package="dolmen.layout" file="meta.zcml" />
+
   <include package="dolmen.menu" />
   <include package="dolmen.app.security" />
   <include package="dolmen.forms.crud" />
+
 </configure>

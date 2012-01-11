@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 from os.path import join
 
 name = 'dolmen.app.layout'
-version = '2.0a2'
+version = '2.0a3'
 readme = open('README.txt').read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
@@ -45,7 +45,7 @@ setup(name = name,
       version = version,
       description = 'Layout and page models for Dolmen applications',
       long_description = readme + '\n\n' + history,
-      keywords = 'Grok Zope3 CMS Dolmen',
+      keywords = 'Cromlech CMS Dolmen',
       author = 'Souheil Chelfouh',
       author_email = 'trollfot@gmail.com',
       url = 'http://gitweb.dolmen-project.org/',

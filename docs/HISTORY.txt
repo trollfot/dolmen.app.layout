@@ -1,6 +1,14 @@
 Changelog
 =========
 
+2.0a3 (2012-01-11)
+------------------
+
+* Changed the content of the `configure.zcml`, to have a ready-to-use
+  grokking configuration. `components.zcml` only contains the grokking
+  directive, now.
+
+
 2.0a2 (2012-01-11)
 ------------------
 
