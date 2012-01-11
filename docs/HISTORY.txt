@@ -1,6 +1,15 @@
 Changelog
 =========
 
+2.0a1 (2012-01-11)
+------------------
+
+* ``Cromlech`` migration has been done, using the newest``Dolmen`` packages.
+  This is a major change, since the framework is no longer the same.
+  This does _not_ work with the previous ``Dolmen`` framework based on
+  ``Grok``.
+
+
 1.0b2 (2011-02-01)
 ------------------
 
