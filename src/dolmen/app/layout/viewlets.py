@@ -4,9 +4,8 @@ import dolmen.viewlet
 
 from dolmen.message import receive
 from dolmen.resources import ResourceViewlet
-from dolmen.template import TALTemplate
-from dolmen.app.layout import Resources
-from dolmen.app.layout import utils, interfaces as API
+from dolmen.app.layout import get_template
+from dolmen.app.layout import Resources, interfaces as API
 from dolmen.app.layout import ContextualMenu, MenuViewlet, AboveBody, Top
 
 from grokcore.component import baseclass
@@ -20,9 +19,9 @@ class Resource(ResourceViewlet):
 
 class FlashMessages(dolmen.viewlet.Viewlet):
     dolmen.viewlet.order(10)
+    dolmen.viewlet.slot(AboveBody)
     dolmen.viewlet.context(Interface)
     dolmen.viewlet.name('dolmen.messages')
-    dolmen.viewlet.slot(AboveBody)
 
     def update(self):
         received = receive()
@@ -38,7 +37,7 @@ class ContextualActions(MenuViewlet):
     dolmen.viewlet.order(50)
 
     menu_factory = ContextualMenu
-    template = TALTemplate(utils.template_path('menu.pt'))
+    template = get_template('menu.pt')
 
     def compute_actions(self, viewlets):
         for action in viewlets:

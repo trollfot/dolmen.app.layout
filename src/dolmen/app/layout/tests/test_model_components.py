@@ -3,7 +3,7 @@
 import pytest
 from cromlech.browser.testing import XMLDiff
 from cromlech.io import IPublicationRoot
-from cromlech.io.testing import TestRequest
+from cromlech.browser.testing import TestHTTPRequest
 from zope.testing.cleanup import cleanUp
 
 from dolmen.app.layout import models
@@ -52,7 +52,7 @@ class Adding(Location):
 
 def test_registered_models():
     folder = Folder()
-    request = TestRequest()
+    request = TestHTTPRequest()
 
     view = getMultiAdapter((folder, request), name="index")
     assert view.__class__ == models.DefaultView
@@ -73,11 +73,11 @@ ADDFORM = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://ww
    <head></head>
    <body>
      <div id="page">
-       <div id="dolmen-site">
-         <div id="dolmen-header"></div>
-         <div id="dolmen-body">
- 	   <div id="dolmen-above-body"></div>
- 	   <div id="dolmen-inner-body">
+       <div id="site">
+         <div id="header"></div>
+         <div id="content-body">
+ 	   <div id="above-body"></div>
+ 	   <div id="inner-body">
             <form action="http://localhost/add/add" method="post"
                   enctype="multipart/form-data" id="form">
               <h1>Add</h1>
@@ -94,9 +94,9 @@ ADDFORM = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://ww
                 </div>
               </form>
            </div>
- 	   <div id="dolmen-below-body"></div>
+ 	   <div id="below-body"></div>
          </div>
-         <div id="dolmen-footer"></div>
+         <div id="footer"></div>
        </div>
      </div>
    </body>
@@ -105,7 +105,7 @@ ADDFORM = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://ww
 
 def test_adding_form():
     folder = Folder()
-    request = TestRequest()
+    request = TestHTTPRequest()
 
     class MyContent(object):
         pass
@@ -120,11 +120,11 @@ EDITFORM = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://w
   <head></head>
   <body>
     <div id="page">
-      <div id="dolmen-site">
-        <div id="dolmen-header"></div>
-        <div id="dolmen-body">
-	  <div id="dolmen-above-body"></div>
-	  <div id="dolmen-inner-body">
+      <div id="site">
+        <div id="header"></div>
+        <div id="content-body">
+	  <div id="above-body"></div>
+	  <div id="inner-body">
             <form action="http://localhost/item/edit" 
                   method="post"
                   enctype="multipart/form-data" id="form">
@@ -154,9 +154,9 @@ EDITFORM = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://w
               </div>  
            </form>
          </div>
-	<div id="dolmen-below-body"></div>
+	<div id="below-body"></div>
       </div>
-      <div id="dolmen-footer"></div>
+      <div id="footer"></div>
     </div>
   </div>
   </body>
@@ -174,7 +174,7 @@ def test_edit_form():
 
     folder = Folder()
     item = MyContent()
-    request = TestRequest()
+    request = TestHTTPRequest()
 
     item.__parent__ = folder
     item.__name__ = 'item'

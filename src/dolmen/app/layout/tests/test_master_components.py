@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from dolmen.viewlet import testing
-from cromlech.browser.testing import TestView
-from cromlech.io.testing import TestRequest
+from cromlech.browser.testing import TestView, TestHTTPRequest
 from zope.testing.cleanup import cleanUp
 
 from dolmen.app.layout import models
@@ -24,17 +23,17 @@ def teardown_module(module):
 def test_registered_managers():
 
     context = Location()
-    request = TestRequest()
+    request = TestHTTPRequest()
     
     view = TestView(context, request)
     managers = list(getAdapters((context, request, view), IViewSlot))
 
     assert len(managers) == 6
     assert set(dict(managers).keys()) == set([
-        'dolmen.above.body',
-        'dolmen.below.body',
-        'dolmen.footer',
-        'dolmen.header',
-        'dolmen.resources',
-        'dolmen.top',
+        'abovebody',
+        'belowbody',
+        'footer',
+        'header',
+        'resources',
+        'top',
         ])

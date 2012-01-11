@@ -6,13 +6,12 @@ import dolmen.menu
 import dolmen.message
 import grokcore.security as grok
 
-from cromlech.io import IRequest
+from cromlech.browser import IHTTPRequest
 from cromlech.webob.response import Response
-from dolmen.template import TALTemplate
+from dolmen.app.layout import get_template
 from dolmen.app.layout import interfaces as API, IDisplayView, ContextualMenu
 from dolmen.app.security import permissions
 from dolmen.forms import crud, base
-from dolmen.app.layout import utils
 
 from zope.interface import implements, moduleProvides
 
@@ -21,14 +20,13 @@ class Page(dolmen.view.View):
     """A dolmen site page.
     """
     grok.baseclass()
+    dolmen.view.request(IHTTPRequest)
     grok.require(permissions.CanViewContent)
 
-    dolmen.view.request(IRequest)
     implements(IDisplayView)
 
-    layout_name = u""
     responseFactory = Response
-    __call__ = utils.layout_view_renderer
+    __call__ = dolmen.view.layout_renderer(name='')
 
 
 class Index(Page):
@@ -51,8 +49,8 @@ class DefaultView(crud.Display):
     grok.require(permissions.CanViewContent)
 
     responseFactory = Response
-    template = TALTemplate(utils.template_path('display.pt'))
-    __call__ = utils.layout_form_renderer
+    template = get_template('display.pt')
+    __call__ = base.form_layout_renderer(name='')
 
 
 class Form(base.Form):
@@ -63,8 +61,8 @@ class Form(base.Form):
 
     ignoreContext = True
     responseFactory = Response
-    template = TALTemplate(utils.template_path('form.pt'))
-    __call__ = utils.layout_form_renderer
+    template = get_template('form.pt')
+    __call__ = base.form_layout_renderer(name='')
 
 
 class Add(crud.Add):
@@ -74,8 +72,8 @@ class Add(crud.Add):
     grok.require(permissions.CanAddContent)
 
     responseFactory = Response
-    template = TALTemplate(utils.template_path('form.pt'))
-    __call__ = utils.layout_form_renderer
+    template = get_template('form.pt')
+    __call__ = base.form_layout_renderer(name='')
 
 
 @dolmen.menu.menuentry(ContextualMenu, order=20)
@@ -86,8 +84,8 @@ class Edit(crud.Edit):
     grok.require(permissions.CanEditContent)
 
     responseFactory = Response
-    template = TALTemplate(utils.template_path('form.pt'))
-    __call__ = utils.layout_form_renderer
+    template = get_template('form.pt')
+    __call__ = base.form_layout_renderer(name='')
 
 
 @dolmen.menu.menuentry(ContextualMenu, order=30)
@@ -98,8 +96,8 @@ class Delete(crud.Delete):
     grok.require(permissions.CanDeleteContent)
 
     responseFactory = Response
-    template = TALTemplate(utils.template_path('form.pt'))
-    __call__ = utils.layout_form_renderer
+    template = get_template('form.pt')
+    __call__ = base.form_layout_renderer(name='')
 
 
 moduleProvides(API.IModels, API.IBaseViews)

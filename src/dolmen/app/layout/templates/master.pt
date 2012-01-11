@@ -1,30 +1,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <tal:header tal:content="structure slot:dolmen.header" />
+    <tal:header tal:content="structure slot:header" />
   </head>
   <body>
-  <div id="page">
-    <div id="dolmen-site">
-      <div id="dolmen-header"
-	   tal:content="structure slot:dolmen.top" />
-
-      <div id="dolmen-body">
-	<div id="dolmen-above-body"
-	     tal:content="structure slot:dolmen.above.body" />
-
-	<div id="dolmen-inner-body"
-	     tal:content="structure content">
-	  Pagelet body will appear here.
+    <div id="page">
+      <div id="site">
+	<div id="header" tal:content="structure slot:top" />
+	<div id="content-body">
+	  <div id="above-body" tal:content="structure slot:abovebody" />
+	  <div id="inner-body" tal:content="structure content" />
+	  <div id="below-body" tal:content="structure slot:belowbody" />
 	</div>
-
-	<div id="dolmen-below-body"
-	     tal:content="structure slot:dolmen.below.body" />
+	<div id="footer" tal:content="structure slot:footer" />
       </div>
-
-      <div id="dolmen-footer"
-	   tal:content="structure slot:dolmen.footer" />
     </div>
-  </div>
   </body>
 </html>

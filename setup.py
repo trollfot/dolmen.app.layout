@@ -4,39 +4,39 @@ from setuptools import setup, find_packages
 from os.path import join
 
 name = 'dolmen.app.layout'
-version = '2.0a1-dev'
+version = '2.0a1'
 readme = open('README.txt').read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
 install_requires = [
-    'cromlech.browser',
-    'cromlech.io',
-    'dolmen.app.security',
+    'cromlech.browser >= 0.3a2',
+    'cromlech.io >= 0.2a1',
     'dolmen.container',
-    'dolmen.forms.base',
-    'dolmen.forms.crud >= 2.0a1-dev',
-    'dolmen.layout',
+    'dolmen.forms.base >= 2.0b2',
+    'dolmen.forms.crud >= 2.0b2',
+    'dolmen.layout >= 0.2a2',
     'dolmen.location',
     'dolmen.menu',
     'dolmen.message',
     'dolmen.resources',
+    'dolmen.tales',  # tales
     'dolmen.template',
-    'dolmen.view',
+    'dolmen.view >= 0.3a3',
     'dolmen.viewlet',
+    'dolmen.app.security >= 2.0a1',
     'grokcore.component',
     'grokcore.security',
     'setuptools',
     'zope.component',
     'zope.interface',
-    'dolmen.tales',  # tales
     ]
 
 tests_require = [
-    'cromlech.browser [test]',
-    'dolmen.viewlet [test]',
-    'cromlech.io',
+    'cromlech.browser [test] >= 0.3a2',
+    'cromlech.io [test]',
     'dolmen.content',
-    'dolmen.forms.base [test]',
+    'dolmen.forms.base [test] >= 2.0b2',
+    'dolmen.viewlet [test]',
     'grokcore.component',
     'zope.location',
     'zope.security',
