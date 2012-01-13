@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0 (unreleased)
+----------------
+
+* Update to use grokcore.layout instead of megrok.layout.
+
 1.0b2 (2011-02-01)
 ------------------
 

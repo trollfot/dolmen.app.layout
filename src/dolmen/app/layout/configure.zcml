@@ -5,7 +5,7 @@
 
   <include package="grokcore.view" file="meta.zcml" />
   <include package="grokcore.viewlet" file="meta.zcml" />
-  <include package="megrok.layout" file="meta.zcml" />
+  <include package="grokcore.layout" file="meta.zcml" />
 
   <include package="dolmen.menu" />
   <include package="dolmen.app.security" />

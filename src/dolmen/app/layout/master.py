@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import grokcore.viewlet as grok
+from grokcore.layout import Layout
 from dolmen.app.layout import interfaces as API
-from megrok.layout import Layout
 from megrok.resourceviewlet import ResourcesManager
 from zope.interface import Interface, moduleProvides
 from zope.traversing.browser import absoluteURL

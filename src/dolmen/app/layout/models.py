@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import megrok.layout
+import grokcore.layout
 import grokcore.security as grok
 
 from dolmen import menu
@@ -11,7 +11,7 @@ from dolmen.app.layout import ContextualMenu
 from zope.interface import moduleProvides
 
 
-class Page(megrok.layout.Page):
+class Page(grokcore.layout.Page):
     """A dolmen site page.
     """
     grok.baseclass()
