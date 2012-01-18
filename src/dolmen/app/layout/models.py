@@ -24,7 +24,7 @@ class Page(dolmen.view.View):
     implements(IDisplayView)
 
     responseFactory = Response
-    __call__ = dolmen.view.layout_renderer(name='')
+    make_response = dolmen.view.make_layout_response
 
 
 class Index(Page):
@@ -48,7 +48,7 @@ class DefaultView(crud.Display):
 
     responseFactory = Response
     template = get_template('display.pt')
-    __call__ = base.form_layout_renderer(name='')
+    make_response = dolmen.view.make_layout_response
 
 
 class Form(base.Form):
@@ -60,7 +60,7 @@ class Form(base.Form):
     ignoreContext = True
     responseFactory = Response
     template = get_template('form.pt')
-    __call__ = base.form_layout_renderer(name='')
+    make_response = dolmen.view.make_layout_response
 
 
 class Add(crud.Add):
@@ -71,7 +71,7 @@ class Add(crud.Add):
 
     responseFactory = Response
     template = get_template('form.pt')
-    __call__ = base.form_layout_renderer(name='')
+    make_response = dolmen.view.make_layout_response
 
 
 @dolmen.menu.menuentry(ContextualMenu, order=20)
@@ -83,7 +83,7 @@ class Edit(crud.Edit):
 
     responseFactory = Response
     template = get_template('form.pt')
-    __call__ = base.form_layout_renderer(name='')
+    make_response = dolmen.view.make_layout_response
 
 
 @dolmen.menu.menuentry(ContextualMenu, order=30)
@@ -95,7 +95,7 @@ class Delete(crud.Delete):
 
     responseFactory = Response
     template = get_template('form.pt')
-    __call__ = base.form_layout_renderer(name='')
+    make_response = dolmen.view.make_layout_response
 
 
 moduleProvides(API.IModels, API.IBaseViews)
